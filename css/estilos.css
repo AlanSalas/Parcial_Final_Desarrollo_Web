@@ -1,0 +1,139 @@
+/*----GLOBAL----*/
+html {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	outline: 0 none;
+}
+
+body {
+	font-family: 'Titillium Web', Arial, sans-serif;
+	font-weight: 400;
+	color: #3c4761;
+	line-height: 16px;
+	font-size: 24px;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: #507cbe;
+	text-decoration: none;
+}
+
+.wrapper {
+	position: relative;
+	width: 100%;
+	display: block;
+	clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-size: 24px;
+	line-height: 125%;
+	color: #3c4761;
+}
+
+/*----SERVICES----*/
+#service {
+	padding: 100px 0 120px;
+	background: #17c2a4;
+}
+
+#service h2 {
+	font-size: 42px;
+	line-height: 80px;
+	color: #ffffff;
+	text-align: center;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+#service .bottomline {
+	height: 4px;
+	width: 88px;
+	background: #14a58c;
+	display: block;
+	margin: 0 auto;
+}
+
+#service p {
+	color: #ffffff;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: center;
+	width: 55%;
+	margin: 15px auto 70px;
+	display: block;
+}
+
+#service figure {
+	text-align: center;
+}
+
+#service figure h3 {
+	font-size: 24px;
+	color: #ffffff;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#service figure p {
+	width: 100%;
+	margin: 15px auto 0;
+}
+
+.imageheight {
+	height: 165px;
+}
+
+/*----SKILL----*/
+#skill {
+	padding: 100px 0 115px;
+	text-align: center;
+}
+
+#skill h2 {
+	font-size: 42px;
+	line-height: 80px;
+	color: #3c4761;
+	text-align: center;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+#skill .bottomline {
+	height: 4px;
+	width: 88px;
+	background: #c8d9e5;
+	display: block;
+	margin: 0 auto;
+}
+
+#skill p {
+	color: #3c4761;
+	font-size: 18px;
+	line-height: 26px;
+	text-align: center;
+	width: 55%;
+	margin: 15px auto 70px;
+	display: block;
+}
+
+#skill span {
+	font-size: 24px;
+	line-height: 100%;
+	color: #3c4761;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-top: 20px;
+	display: block;
+	text-align: center;
+}

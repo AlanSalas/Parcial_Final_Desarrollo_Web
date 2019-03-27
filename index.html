@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="mx">
+
+<head>
+    <meta charset="UTF-8">
+    <!--BOOTSTRAP CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!--ESTILOS-->
+    <link rel="stylesheet" href="css/estilos.css">
+    <!--MOBILE VIEW-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!--FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,400italic,600,700' rel='stylesheet'
+        type='text/css'>
+    <!--JS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.js"></script>
+    <script src="js/classyloader.js"></script>
+    <title>Cuda</title>
+</head>
+
+<body>
+    <!--SERVICES-->
+    <section class="wrapper" id="service">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>SERVICES WE PROVIDE</h2>
+                    <div class="bottomline"></div>
+                    <p>We are working with both individuals and businesses from all over the globe to create awesome
+                        websites and applications.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <figure>
+                        <div class="imageheight">
+                            <img src="img/branding.png" alt="Branding">
+                        </div>
+                        <figcaption>
+                            <h3>Branding</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <figure>
+                        <div class="imageheight">
+                            <img src="img/design.png" alt="Design">
+                        </div>
+                        <figcaption>
+                            <h3>Design</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <figure>
+                        <div class="imageheight">
+                            <img src="img/development.png" alt="Development">
+                        </div>
+                        <figcaption>
+                            <h3>Development</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <figure>
+                        <div class="imageheight">
+                            <img src="img/rocket.png" alt="Rocket Science">
+                        </div>
+                        <figcaption>
+                            <h3>Rocket Science</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--SKILL-->
+    <section class="wrapper" id="skill">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2>WE GOT SKILLS!</h2>
+                    <div class="bottomline"></div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="row">
+                <!--Loader-->
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div>
+                        <div class="clearfix">
+                            <canvas class="loader"></canvas>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.loader').ClassyLoader({
+                                        percentage: 90,
+                                        speed: 20,
+                                        fontSize: '40px',
+                                        diameter: 80,
+                                        lineColor: 'rgba(48,186,231,1)',
+                                        remainingLineColor: 'rgba(223,232,237,0.4)',
+                                        lineWidth: 12
+                                    });
+                                });
+                            </script>
+
+                        </div>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+                <!--Loader 1-->
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div>
+                        <div class="clearfix">
+                            <canvas class="loader1"></canvas>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.loader1').ClassyLoader({
+                                        percentage: 75,
+                                        speed: 20,
+                                        fontSize: '40px',
+                                        diameter: 80,
+                                        lineColor: 'rgba(215,70,128,1)',
+                                        remainingLineColor: 'rgba(223,232,237,0.4)',
+                                        lineWidth: 12
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <span>HTML/CSS</span>
+                    </div>
+                </div>
+                <!--Loader 2-->
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div>
+                        <div class="clearfix">
+                            <canvas class="loader2"></canvas>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.loader2').ClassyLoader({
+                                        percentage: 70,
+                                        speed: 20,
+                                        fontSize: '40px',
+                                        diameter: 80,
+                                        lineColor: 'rgba(21,199,168,1)',
+                                        remainingLineColor: 'rgba(223,232,237,0.4)',
+                                        lineWidth: 12
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <span>GRAPHIC DESIGN</span>
+                    </div>
+                </div>
+                <!--Loader 3-->
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div>
+                        <div class="clearfix">
+                            <canvas class="loader3"></canvas>
+                            <script>
+                                $(document).ready(function () {
+                                    $('.loader3').ClassyLoader({
+                                        percentage: 85,
+                                        speed: 20,
+                                        fontSize: '40px',
+                                        diameter: 80,
+                                        lineColor: 'rgba(235,125,75,1)',
+                                        remainingLineColor: 'rgba(223,232,237,0.4)',
+                                        lineWidth: 12
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <span>UI/UX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
