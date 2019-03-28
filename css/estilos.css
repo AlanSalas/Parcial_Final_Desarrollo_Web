@@ -153,6 +153,7 @@ a {
     display: inline;
     padding: 20px;
     color: white;
+    font-size: 1.1rem;
 
 }
 #menu li:hover{
@@ -169,7 +170,7 @@ header{
     margin-top: 10%;
     text-align: center;
     color: white;
-    
+    font-weight: bold;
 }
 #div1-1 p{
 	font-size: 15px;
@@ -197,17 +198,18 @@ header{
     text-align: center;
     margin: auto;
 }
-#div2-1 div{
+#div2-1 hr{
 	height: 4px;
 	width: 88px;
 	background-color: rgb(200,216,229);
 	display: block;
-	margin: 0 auto;
+	margin: 1rem auto;
 }
 #div2-1 p{
     padding-top: 5px;
     text-align: center;
     padding-bottom: 50px;
+    font-size: 1.1rem;
 }
 
 #div2-2{
@@ -217,16 +219,24 @@ header{
     display: inline-block;
     list-style-type: none;
     padding: 0px 5px;
+
+}
+#div2-2 h3{
+	font-size: 1.4rem;
+	font-weight: bold;
     
+      
+
     
 }
 #div2-2 h4{
     margin-top: -15px;
-    font-size: 14px;
     color: rgb(86,194,232);
+    font-size: 1rem;
 }
 #div2-2 ul li{
     text-align: center;
+    font-size: 1.1rem;
 }
 #div2-2 .iconos li{
     display: inline;
