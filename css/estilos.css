@@ -301,3 +301,291 @@ header{
 #info{
     color:white;
 }
+
+
+/*tamaño del border de load more project*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*----PORTFOLIO----*/
+#portafolio{
+    padding:100px 0 115px;
+    text-align: center;
+    background:#ffdd99;
+}
+#portafolio h2{
+    font-size:42px;
+    line-height:80px;
+    color:#393939;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:2px;
+}
+#portafolio .bottomline{
+    height:4px;
+    width:88px;
+    background:#e5c37f;
+    display:block;
+    margin:0 auto;
+}
+#portafolio p{
+    color:#393939;
+    font-size:18px;
+    line-height:26px;
+    text-align:center;
+    width:55%;
+    margin:15px auto 70px;
+    display:block;
+}
+/*BUTTON EFFECT boton de load more project*/
+.btn1 {
+    border: none;
+    font-family: inherit;
+    font-size: 18px;/*letras dentro del boton*/
+    line-height:26px;
+    background: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align:center;
+    width:300px;
+    margin:0 auto;/*para centrar el boton*/
+    display:block;
+    
+}
+.btn1:after {/*organizar las imagenes del portafolio*/
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+/* Button 1 load more project  */
+.btn-21 {
+    background: #17c2a4;
+    color: #fff;
+    box-shadow: 0 6px #14a58c;/*pestaña del boton*/
+    
+}
+/* Button 2a */
+.btn-2a1 {
+    border-radius: 5px;/*radio del boton load more project*/
+}
+.btn-2a1:hover {
+    box-shadow: 0 4px #14a58c;/*efecto que hace el boton(pestaña)*/
+    top: 2px;/*parpadeo del boton*/
+}
+.btn-2a1:active {/*movimiento del boton load more project*/
+    box-shadow: 0 0 #14a58c;
+    top: 6px;
+}
+
+
+/*----GET IN TOUCH----*/
+#contacto{/*estilo de color azul para el fondo de contacto*/ 
+    padding:100px 0 100px;
+    text-align: center;
+    background:#3c5499;
+}
+#contacto h2{/* estilo del titulo GET IN TOUCH*/
+    font-size:42px;
+    line-height:80px;
+    color:#ffffff;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:2px;/* estilo del subtitulo 1600 Pennsylvania*/
+}
+#contacto .bottomline{
+    height:4px;
+    width:88px;
+    background:#273a71;
+    display:block;
+    margin:0 auto;
+}
+#contacto p{
+    color:#ffffff;
+    font-size:18px;
+    line-height:26px;
+    text-align:center;
+    margin:15px auto 70px;
+    display:block;
+}
+.spacing{/*margen del comentario*/
+    margin:0 120px;
+}
+.name{
+    width:50%;
+    float:left;
+}
+#contacto input[type="text"]{
+    width:93%;
+    height:55px;
+    border-radius:3px;
+    background:#273a71;
+    font-size:18px;///
+    line-height:18px;
+    color:#ffffff;
+    border:none;
+    padding-left:10px;
+}
+
+.email{
+    width:50%;
+    float:right;
+}
+#contacto input[type="email"]{
+    width:93%;
+    height:55px;
+    border-radius:3px;
+    background:#273a71;
+    font-size:18px;
+    line-height:18px;
+    color:#ffffff;
+    border:none;
+    padding-left:10px;
+}
+#contacto textarea{
+    width:96.5%;
+    height:200px;
+    background:#273a71;
+    border-radius:3px;
+    border:none;
+    margin-top:25px;
+    font-size:18px;
+    padding:10px;
+    color:#ffffff;
+    line-height:22px;
+}
+::-webkit-input-placeholder {
+   color: #ffffff;
+}
+
+:-moz-placeholder { /* */
+   color: #ffffff;  
+}
+
+::-moz-placeholder {  /* */
+   color: #ffffff;  
+}
+
+:-ms-input-placeholder {  
+   color: #ffffff;  
+}
+
+
+/*BUTTON EFFECT /* Button 2 de SEND MESSAGE*/
+.btn11 {
+    border: none;
+    font-family: inherit;
+    font-size: 18px;/*tamaño de la letra que contiene*/
+    line-height:26px;/*altura del boton*/
+    background: none;
+    cursor: pointer;
+    padding: 20px 0;/*grosor del boton*/
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;/*salto de linea para el boton*/
+    font-weight: 600;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align:center;
+    width:300px;/*tamaño de los cuadros de text(boton de sende message)*/
+    margin:60px auto 0;
+    display:block;
+    
+}/* Button 2 de SEND MESSAGE*/
+.btn11:after {
+    content: '';
+    position: absolute;
+    z-index: -10;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+/* Button 2 de SEND MESSAGE*/
+.btn-211 {
+    background: #30bae7;
+    color: #fff;
+    box-shadow: -20px #299ec5;
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+}
+/* Button de SEND MESSAGE */
+.btn-2a11 {
+    border-radius: 6px;
+}
+.btn-2a11:hover {
+    box-shadow: 0 4px #299ec5;/*ancho de la pestaña del boton*/
+    top: 2px;/*movimiento del boton con el cursor*/
+}
+.btn-2a11:active {
+    box-shadow: 0 0 #299ec5;
+    top: 6px;/*para mover el boton*/
+}
+
+/*----FOOTER---- botones de 
+Facebook Twitter Google+ LinkedIn Behance Dribbble GitHub*/ 
+footer{
+    padding:45px 0;/*tamaño del encabezado azul*/
+    background:#344b8e;
+    text-align:center;
+}
+footer ul li{
+    display:inline;
+    font-size:24px;/*Tamaño de Facebook Twitter Google+ LinkedIn Behance Dribbble GitHub*/
+    line-height:30px;
+    margin:0 20px;
+}
+footer ul li a{
+    color:#ffffff;/*color blanco de Facebook Twitter Google+ LinkedIn Behance Dribbble GitHub*/
+}
+footer ul li a:hover{/*para cambiar de color con el cursor*/
+    color:#30bae7;
+    transition:all 0.4s;
+    }
+
+}
+footer p a:hover{/*color del encabezado de abajo*/
+    color:#ffffff;
+    text-decoration:underline;
+}
+
+    
+    
+
+/* lista del portafolio (All,WEB,APPS,ICONS)*/
+
+ul#portafolio-filter{padding: 0; height: 64px; padding-left: 70px; line-height: 64px; }
+ul#portafolio-filter li{ display: inline; }
+ul#portafolio-filter a{ margin-right: 0.5em; padding: 5px 20px; background: #ebc985; border-radius:5px; color:#393939; font-size:18px; line-height:20px; }
+ul#portafolio-filter a:hover, ul#portafolio-filter a.current{ color: #888; }
+ul#portafolio-filter a.current{ background-color: #fff; }
+
+/* ordenamiento de las imagenes del portafolio*/
+ul#portafolio-lista{ margin: 60px 0 0 0; padding: 0; list-style: none; }
+ul#portafolio-lista li{ width: 50%; height: auto; display: block; float: left; overflow: hidden; }
+ul#portafolio-lista li a{ display: block; width: 100%; height: auto; overflow: hidden; }
+
+/*tamaño de los subtitulos de img del portafolio*/
+ul#portafolio-lista p{
+    font-size:18px;
+    line-height:20px;
+    color:#393939;
+    text-transform:uppercase; }
+
+    
