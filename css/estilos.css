@@ -282,11 +282,13 @@ header {
     color: white;
 }
 
-#divBlog hr {
-    width: 100px;
-    height: 5px;
-    border: none;
-    background-color: #b73c6d;
+#hr {
+   height: 4px;
+    width: 88px;
+    background: #b73c6d;
+    display: block;
+    margin: 0 auto;
+    #b73c6d;
 }
 
 #divBlog p {
