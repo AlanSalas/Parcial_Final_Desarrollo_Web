@@ -264,23 +264,13 @@ header {
     padding-top: 20px;
 }
 
-/*ABOUT US*/
-
-#divBlog {
-    width: 100%;
-    height: 895px;
-
-    color: black;
-    background-color: #d74680;
-    margin: 0px;
-}
-
-#divBlog h1 {
-    padding-top: 7%;
+/*----ABOUT US----*/
+#about{
+    padding:100px 0 15px;
     text-align: center;
-    margin: auto;
-    color: white;
+    background:#d74680;
 }
+
 
 #hr {
     height: 4px;
@@ -288,43 +278,75 @@ header {
     background: #b73c6d;
     display: block;
     margin: 0 auto; 
-}
 
-#divBlog p {
-    padding-top: 5px;
-    text-align: center;
-    padding-bottom: 50px;
-    color: white;
-}
-
-#divBlog2 {
-    text-align: center;
-}
-
-#divBlog2 ul {
-    display: inline-block;
-    list-style-type: none;
-    padding: 0px 5px;
-
+#about .margin{
+    margin-bottom: 40px;
 
 }
 
-#divBlog2 h4 {
-    margin-top: -15px;
-    font-size: 14px;
-    color: #facd96;
+#about h2{
+    font-size:42px;
+    line-height:80px;
+    color:#ffffff;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:2px;
 }
-
-#divBlog2 ul li {
-    text-align: center;
+#about .bottomline{
+    height:4px;
+    width:88px;
+    background:#b73c6d;
+    display:block;
+    margin:0 auto;
 }
-
-#divBlog2 h3 {
-    color: white;
+#about p{
+    color:#ffffff;
+    font-size:18px;
+    line-height:26px;
+    text-align:center;
+    width:55%;
+    margin:15px auto 70px;
+    display:block;
 }
-
-#info{
-    color:white;
+#about .testimage{
+    float:left;
+    width:30%;
+}
+#about .righttest{
+    float:right;
+    width:70%;
+    margin-bottom: 80px;
+}
+#about blockquote{
+    font-size:21px;
+    line-height:31px;
+    font-weight:400;
+    font-style:italic;
+    color:#ffffff;
+    text-align:left;
+}
+#about span{
+    font-size:24px;
+    line-height:26px;
+    color:#ffffff;
+    font-weight:700;
+    text-transform:uppercase;
+    text-align:left;
+    display:block;
+    margin-top:18px;
+}
+#about span.smalltest{
+    font-size:18px;
+    line-height:26px;
+    color:#ffdd99;
+    font-weight:400;
+    text-transform:none;
+    text-align:left;
+    display:block;
+    margin-top:0px;
+}
+.testimonial{
+    margin-bottom:100px;
 }
 
 
