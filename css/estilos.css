@@ -282,11 +282,12 @@ header {
     color: white;
 }
 
-#divBlog hr {
-    width: 100px;
-    height: 5px;
-    border: none;
-    background-color: #b73c6d;
+#hr {
+    height: 4px;
+    width: 88px;
+    background: #b73c6d;
+    display: block;
+    margin: 0 auto; 
 }
 
 #divBlog p {
@@ -598,7 +599,7 @@ ul#portafolio-filter{padding: 0; height: 64px; padding-left: 70px; line-height: 
 ul#portafolio-filter li{ display: inline; }
 ul#portafolio-filter a{ margin-right: 0.5em; padding: 5px 20px; background: #ebc985; border-radius:5px; color:#393939; font-size:18px; line-height:20px; }
 ul#portafolio-filter a:hover, ul#portafolio-filter a.current{ color: #888; }
-ul#portafolio-filter a.current{ background-color: #fff; }
+ul#portafolio-filter a.current{ background-color: #ffffff; }
 
 /* ordenamiento de las imagenes del portafolio*/
 ul#portafolio-lista{ margin: 60px 0 0 0; padding: 0; list-style: none; }
