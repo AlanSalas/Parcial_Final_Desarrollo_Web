@@ -6,6 +6,24 @@ require_once("con_db.php");
 		case 'login':
 			login();
 			break;
+		case 'consultar_usuarios':
+			consultar_usuarios();
+			break;
+		case 'insertar_usuarios':
+			insertar_usuarios();
+			break;
+		case 'eliminar_usuarios';
+			eliminar_usuarios($_POST['id']);
+			break;
+		case 'editar_usuarios':
+			editar_usuarios();
+			break;
+		case 'consultar_registro_usuarios':
+			consultar_registro_usuarios($_POST['id']);
+			break;
+		case 'carga_foto':
+			carga_foto();
+			break;
 		default:
 			# code...
 			break;
@@ -46,6 +64,123 @@ require_once("con_db.php");
 				}
 			}
 		} 	
-    }
-    
+	}
+	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
+	function consultar_usuarios(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM usuarios";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR USUARIOS-----------------------------//
+	function insertar_usuarios(){
+		//Conectar a la bd
+		global $mysqli;
+		$nombre = $_POST['nombre_usr'];
+		$correo = $_POST['correo_usr'];
+		$img_usr = $_POST['img_usr'];
+		$telefono = $_POST['telefono_usr'];
+		$pass = $_POST['password_usr'];
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($nombre) && empty($correo) && empty($telefono) && empty($pass)) {
+			echo "0";
+		}elseif (empty($nombre)) {
+			echo "2";
+		}elseif (empty($correo)) {
+			echo "3";
+		}elseif ($correo != filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+			echo "4";
+		}elseif (empty($img_usr)) {
+			echo "10";
+		}elseif (empty($telefono)) {
+			echo "5";
+		}elseif (preg_match($expresion, $telefono)) {
+			echo "6";
+		}elseif (empty($pass)) {
+			echo "7";
+		}else{
+			$sql = "INSERT INTO usuarios VALUES('', '$nombre', '$correo', '$img_usr', '$pass', '$telefono', 1)";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR USUARIOS-----------------------------//
+	function eliminar_usuarios($id){
+		global $mysqli;
+		$sql = "DELETE FROM usuarios WHERE id_usr = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION PARA EDITAR USUARIOS-----------------------------//
+	function editar_usuarios(){
+		global $mysqli;
+		extract($_POST);
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($nombre_usr) && empty($correo_usr) && empty($telefono_usr) && empty($pass_usr)) {
+			echo "0";
+		}elseif (empty($nombre_usr)) {
+			echo "2";
+		}elseif (empty($correo_usr)) {
+			echo "3";
+		}elseif ($correo_usr != filter_var($correo_usr, FILTER_VALIDATE_EMAIL)) {
+			echo "4";
+		}elseif (empty($img_usr)) {
+			echo "10";
+		}elseif (empty($telefono_usr)) {
+			echo "5";
+		}elseif (preg_match($expresion, $telefono_usr)) {
+			echo "6";
+		}elseif (empty($password_usr)) {
+			echo "7";
+		}else{
+			$sql = "UPDATE usuarios SET nombre_usr = '$nombre_usr', correo_usr = '$correo_usr', foto_usr = '$img_usr', password_usr = '$password_usr', telefono_usr = '$telefono_usr'
+			WHERE id_usr = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "8";
+			}else{
+				echo "9";
+			}
+		}
+	}
+	//------------------------------FUNCION CONSULTAR REGISTRO A EDITAR-----------------------------//
+	function consultar_registro_usuarios($id){
+		global $mysqli;
+		$sql = "SELECT * FROM usuarios WHERE id_usr = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA CARGAR IMAGENES------------------------------------//
+	function carga_foto(){
+		if (isset($_FILES["foto"])) {
+			$file = $_FILES["foto"];
+			$nombre = $_FILES["foto"]["name"];
+			$temporal = $_FILES["foto"]["tmp_name"];
+			$tipo = $_FILES["foto"]["type"];
+			$tam = $_FILES["foto"]["size"];
+			$dir = "../img/usuarios/";
+			$respuesta = [
+				"archivo" => "img/usuarios/logo.png",
+				"status" => 0
+			];
+			if(move_uploaded_file($temporal, $dir.$nombre)){
+				$respuesta["archivo"] = "img/usuarios/".$nombre;
+				$respuesta["status"] = 1;
+			}
+			echo json_encode($respuesta);
+		}
+	}
 ?>
