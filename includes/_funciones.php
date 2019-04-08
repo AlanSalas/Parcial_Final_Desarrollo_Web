@@ -24,6 +24,18 @@ require_once("con_db.php");
 		case 'carga_foto':
 			carga_foto();
 			break;
+
+			//HEADER
+
+		case 'consultar_header':
+			consultar_header();
+		break;
+
+		case 'update_header':
+			update_header();
+		break;
+
+
 	//SERVICES
 		case 'consultar_services':
 			consultar_services();
@@ -74,6 +86,35 @@ require_once("con_db.php");
 			editar_about();
 		break;
         default:
+
+		break;		
+
+
+		//TEAM
+
+		case "insertar_team":
+  		insertar_team();
+  		break;
+
+  		case "eliminar_team":
+  		eliminar_team($_POST["id"]);
+		break;
+
+		case 'editar_team':
+    	editar_team($registro= $_POST["id"]);
+		break;
+
+  		case 'consultar_miembro':
+    	consultar_miembro($registro= $_POST["id"]);		
+		default;
+
+		case "consultar_team":
+  		consultar_team();
+
+  break;
+
+
+		default:
 			# code...
 			break;
 	}
@@ -232,6 +273,40 @@ require_once("con_db.php");
 			echo json_encode($respuesta);
 		}
 	}
+
+
+		//------------------------------FUNCIONES MODULO HEADER------------------------------//
+
+		//------------------------------CONSULTAR-----------------------------//
+
+	function consultar_header(){
+ 	global $db;
+ 	$query = "SELECT * FROM proye145_cuda_dweb.header";
+	$stmt = $db->prepare($query);
+	$stmt->execute();
+	$fila = $stmt->fetch(PDO::FETCH_ASSOC);
+	echo json_encode($fila);
+	}
+
+		//------------------------------ACTUALIZAR-----------------------------//
+
+	function update_header(){
+$titulo= $_POST["titulo"];
+$texto= $_POST["texto"];
+$boton = $_POST["boton"];
+$link = $_POST["link"];
+
+ 	global $db;
+ 	$stmt = $db->prepare("UPDATE proye145_cuda_dweb.header SET header_title =?, header_content =?, header_link =?, header_href =? WHERE header_id = 1");
+ 	$stmt->execute(array($titulo, $texto, $boton, $link));
+ 	$affected_rows = $stmt->rowCount();
+ 	if ($affected_rows > 0) {
+ 		echo "1";
+ 	} else {
+ 		echo"0";
+ 	}
+ }
+
 	//------------------------------FUNCIONES MODULO SERVICES------------------------------------//
 	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
 	function consultar_services(){
@@ -520,4 +595,69 @@ require_once("con_db.php");
 			echo json_encode($respuesta);
 		}
 	}
+
+	//------------------------------FUNCIONES MODULO TEAM------------------------------//
+
+	function consultar_team(){
+  global $mysqli;
+  $consulta = "SELECT * FROM team";
+  $resultado = mysqli_query($mysqli, $consulta);
+  $arreglo = [];
+  while($fila = mysqli_fetch_array($resultado)){
+    array_push($arreglo, $fila);
+  }
+  echo json_encode($arreglo); //Imprime el JSON ENCODEADO
+}
+
+
+function consultar_miembro($id){
+  global $mysqli;
+  $consulta = "SELECT * FROM team WHERE team_id = $id";
+  $resultado = mysqli_query($mysqli, $consulta);
+  $fila = mysqli_fetch_array($resultado);
+  echo json_encode($fila); //Imprime el JSON ENCODEADO
+}
+
+function insertar_team(){
+  global $mysqli;
+  $team_img = $_POST["imagen"];
+  $team_name = $_POST["nombre"]; 
+  $team_position = $_POST["cargo"];
+  $team_description = $_POST["descripcion"];
+  $consulta = "INSERT INTO team VALUES('','$team_img','$team_name','$team_position','$team_description')";
+  $resultado = mysqli_query($mysqli, $consulta);
+    if ($resultado) {
+    echo "Se agrego correctamente";
+  } else {
+    echo "Se generó un error, intenta nuevamente";
+  }
+
+}
+
+
+function editar_team($id){
+  global $mysqli;
+  extract($_POST);
+  $consulta = "UPDATE team SET team_img = '$imagen', team_name = '$nombre', 
+  team_position = '$cargo', team_description = '$descripcion' WHERE team_id = '$id' ";
+  $resultado = mysqli_query($mysqli, $consulta);
+  if($resultado){
+    echo "Se editó correctamente";
+  }else{
+    echo "Se generó un error, intentalo nuevamente";
+  }
+}
+
+
+
+function eliminar_team($id){
+  global $mysqli;
+  $query = "DELETE FROM team WHERE team_id = $id";
+  $resultado = mysqli_query($mysqli, $query);
+  if ($resultado) {
+    echo "Se eliminó correctamente";
+  } else {
+    echo "Se generó un error, intenta nuevamente";
+  }
+}
 ?>
