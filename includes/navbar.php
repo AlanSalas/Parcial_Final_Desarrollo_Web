@@ -40,15 +40,28 @@
                 </a>
 
             </li>
-            <!--PORTFOLIO
+            <!--PORTFOLIO-->
             
-        
+         <li class="nav-item">
+                <a class="nav-link" href="portafolio.php" id="portafolio">
+                    Portafolio 
+                </a>
+
+            </li>
             
-            -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="about.php" id="about">
                     About 
                 </a>
+            </li>
+ 
+            <!--CONTACTO-->
+             <li class="nav-item">
+                <a class="nav-link" href="contacto.php" id="contacto">
+                    Contacto
+                </a>
+
             </li>
            </ul>
     </div>
