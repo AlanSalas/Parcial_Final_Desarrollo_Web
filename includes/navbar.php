@@ -25,7 +25,17 @@
                 <a class="nav-link" href="skills.php" id="skills">
                     Skills 
                 </a>
-            </li>            
+            </li>
+            <!--PORTFOLIO
+            
+        
+            
+            -->
+            <li class="nav-item">
+                <a class="nav-link" href="about.php" id="about">
+                    About 
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -55,8 +55,25 @@ require_once("con_db.php");
 		break;
 		case 'editar_skills':
 			editar_skills();
-		break;				
-		default:
+		break;
+
+		//ABOUT
+		case 'consultar_about':
+			consultar_about();
+		break;
+		case 'insertar_about':
+			insertar_about();
+		break;
+		case 'eliminar_about';
+			eliminar_about($_POST['id']);
+		break;
+		case 'consultar_registro_about':
+			consultar_registro_about($_POST['id']);
+		break;
+		case 'editar_about':
+			editar_about();
+		break;
+        default:
 			# code...
 			break;
 	}
@@ -384,6 +401,123 @@ require_once("con_db.php");
 			}else{
 				echo "7";
 			}
+		}
+	}
+	//------------------------------FUNCIONES MODULO ABOUT US--------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR ABOUT US-----------------------------//
+	function consultar_about(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM about";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR ABOUT US-----------------------------//
+	function insertar_about(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo_us'];
+		$subtitulo = $_POST['subtitulo_us'];
+		$descripcion = $_POST['descrip_us'];
+		$nombre = $_POST['nombre_us'];
+		$cargo = $_POST['cargo_us'];
+		$imagen = $_POST['img_us'];
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descripcion) && empty($nombre) && empty($cargo)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($img_us)) {
+			echo "10";
+		}elseif (empty($descripcion)) {
+			echo "5";
+		}elseif (empty($nombre)) {
+			echo "6";
+		}elseif (empty($cargo)) {
+			echo "7";
+		}else{
+			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us' 1)";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR ABOUT US-----------------------------//
+	function eliminar_about($id){
+		global $mysqli;
+		$sql = "DELETE FROM about WHERE id_us = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION PARA EDITAR ABOUT US----------------------------//
+	function editar_about(){
+		global $mysqli;
+		extract($_POST);
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo_us) && empty($subtitulo_us) && empty($descrip_us) && empty($nombre_us)
+	     && empty($cargo_us)){
+			echo "0";
+		}elseif (empty($titulo_us)) {
+			echo "2";
+		}elseif (empty($subtitulo_us)) {
+			echo "3";
+		}elseif (empty($img_us)) {
+			echo "10";
+		}elseif (empty($descrip_us)) {
+			echo "5";
+		}elseif (empty($nombre_us)) {
+			echo "6";
+		}elseif (empty($cargo_us)) {
+			echo "7";
+		}else{
+			$sql = "UPDATE about SET titulo_us = '$titulo_us', subtitulo_us = '$subtitulo_us', descrip_us = '$descrip_us',cargo_us = '$cargo_us',nombre_us = '$nombre_us', img_us = '$img_us'
+			WHERE id_us = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "8";
+			}else{
+				echo "9";
+			}
+		}
+	}
+	//------------------------------FUNCION CONSULTAR ABOUT A EDITAR-----------------------------//
+	function consultar_registro_about($id){
+		global $mysqli;
+		$sql = "SELECT * FROM aboutut WHERE id_us = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA CARGAR IMAGENES------------------------------------//
+	function carga_foto(){
+		if (isset($_FILES["foto"])) {
+			$file = $_FILES["foto"];
+			$nombre = $_FILES["foto"]["name"];
+			$temporal = $_FILES["foto"]["tmp_name"];
+			$tipo = $_FILES["foto"]["type"];
+			$tam = $_FILES["foto"]["size"];
+			$dir = "../img/usuarios/";
+			$respuesta = [
+				"archivo" => "img/BlogB.png",
+				"status" => 0
+			];
+			if(move_uploaded_file($temporal, $dir.$nombre)){
+				$respuesta["archivo"] = "img".$nombre;
+				$respuesta["status"] = 1;
+			}
+			echo json_encode($respuesta);
 		}
 	}
 ?>
