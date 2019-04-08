@@ -6,28 +6,34 @@
                     Usuarios
                 </a>
             </li>
-
-
+            
+            <!--HEADER-->
+            
             <li class="nav-item">
-                <a class="nav-link active" href="header.php">
-                    Header <span class="sr-only">(current)</span>
+                <a class="nav-link active" href="header.php" id="header">
+                    Header <span class="sr-only"></span>
                 </a>
             </li>
-            <!--HEADER
-            
         
             
-            -->
+            <!--SERVICIES-->
             <li class="nav-item">
                 <a class="nav-link" href="services.php" id="services">
                     Services 
                 </a>
             </li>
-            <!--TEAM
+
+            <!--TEAM-->
+
+            	<li class="nav-item">
+                <a class="nav-link" href="team.php" id="team">
+                    Team 
+                </a>
+            </li>
             
         
             
-            -->
+            
             <li class="nav-item">
                 <a class="nav-link" href="skills.php" id="skills">
                     Skills 
