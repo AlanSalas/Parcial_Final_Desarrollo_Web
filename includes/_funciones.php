@@ -24,6 +24,38 @@ require_once("con_db.php");
 		case 'carga_foto':
 			carga_foto();
 			break;
+	//SERVICES
+		case 'consultar_services':
+			consultar_services();
+		break;
+		case 'insertar_services':
+			insertar_services();
+		break;
+		case 'eliminar_services';
+			eliminar_services($_POST['id']);
+			break;
+		case 'consultar_registro_services':
+			consultar_registro_services($_POST['id']);
+			break;
+		case 'editar_services':
+			editar_services();
+			break;
+	//SKILLS
+		case 'consultar_skills':
+			consultar_skills();
+		break;
+		case 'insertar_skills':
+			insertar_skills();
+		break;
+		case 'eliminar_skills';
+			eliminar_skills($_POST['id']);
+		break;
+		case 'consultar_registro_skills':
+			consultar_registro_skills($_POST['id']);
+		break;
+		case 'editar_skills':
+			editar_skills();
+		break;				
 		default:
 			# code...
 			break;
@@ -181,6 +213,177 @@ require_once("con_db.php");
 				$respuesta["status"] = 1;
 			}
 			echo json_encode($respuesta);
+		}
+	}
+	//------------------------------FUNCIONES MODULO SERVICES------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
+	function consultar_services(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM services";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR SERVICES-------------------------------//
+	function insertar_services(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo'];
+		$subtitulo = $_POST['subtitulo'];
+		$service = $_POST['service'];
+		$desc = $_POST['desc'];
+		$img = $_POST['img'];
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($desc) && empty($img)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($service)) {
+			echo "4";
+		}elseif (empty($desc)) {
+			echo "5";
+		}elseif (empty($img)){
+			echo "6";
+		}else{
+			$sql = "INSERT INTO services VALUES('', '$titulo', '$subtitulo', '$service', '$desc', '$img')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR SERVICES-----------------------------//
+	function eliminar_services($id){
+		global $mysqli;
+		$sql = "DELETE FROM services WHERE id_service = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION CONSULTAR REGISTRO A EDITAR-----------------------------//
+	function consultar_registro_services($id){
+		global $mysqli;
+		$sql = "SELECT * FROM services WHERE id_service = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA EDITAR SERVICE-----------------------------//
+	function editar_services(){
+		global $mysqli;
+		extract($_POST);
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($desc) && empty($img)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($service)) {
+			echo "4";
+		}elseif (empty($desc)) {
+			echo "5";
+		}elseif (empty($img)){
+			echo "6";
+		}else{
+			$sql = "UPDATE services SET titulo = '$titulo', subtitulo = '$subtitulo', service = '$service', service_desc = '$desc', img_service = '$img' WHERE id_service = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "7";
+			}else{
+				echo "8";
+			}
+		}
+	}
+	//------------------------------FUNCIONES MODULO SKILLS--------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
+	function consultar_skills(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM skills";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR SKILLS-------------------------------//
+	function insertar_skills(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo'];
+		$subtitulo = $_POST['subtitulo'];
+		$skill = $_POST['skill'];
+		$porcentaje = $_POST['porcentaje'];
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($skill)) {
+			echo "4";
+		}elseif (empty($porcentaje)) {
+			echo "5";
+		}else{
+			$sql = "INSERT INTO skills VALUES('', '$titulo', '$subtitulo', '$skill', '$porcentaje')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR SKILLS-----------------------------//
+	function eliminar_skills($id){
+		global $mysqli;
+		$sql = "DELETE FROM skills WHERE id_skill = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION CONSULTAR REGISTRO A EDITAR-----------------------------//
+	function consultar_registro_skills($id){
+		global $mysqli;
+		$sql = "SELECT * FROM skills WHERE id_skill = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA EDITAR SERVICE-----------------------------//
+	function editar_skills(){
+		global $mysqli;
+		extract($_POST);
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($skill)) {
+			echo "4";
+		}elseif (empty($porcentaje)) {
+			echo "5";
+		}else{
+			$sql = "UPDATE skills SET titulo = '$titulo', subtitulo = '$subtitulo', skill = '$skill', skill_percentage = '$porcentaje' WHERE id_skill = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "6";
+			}else{
+				echo "7";
+			}
 		}
 	}
 ?>
