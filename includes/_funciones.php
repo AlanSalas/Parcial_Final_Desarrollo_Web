@@ -300,12 +300,20 @@ require_once("con_db.php");
 	//------------------------------FUNCIONES MODULO HEADER------------------------------//
 	//------------------------------CONSULTAR-----------------------------//
 	function consultar_header(){
- 	global $db;
- 	$query = "SELECT * FROM proye145_cuda_dweb.header";
-	$stmt = $db->prepare($query);
-	$stmt->execute();
-	$fila = $stmt->fetch(PDO::FETCH_ASSOC);
-	echo json_encode($fila);
+ // 	global $db;
+ // 	$query = "SELECT * FROM proye145_cuda_dweb.header";
+	// $stmt = $db->prepare($query);
+	// $stmt->execute();
+	// $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+	// echo json_encode($fila);
+		global $mysqli;
+		$query = "SELECT * FROM header";
+		$respuesta = $mysqli->query($query);
+		$arreglo = [];
+		while($fila=mysqli_fetch_array($respuesta)){
+			array_push($arreglo, $fila);
+		}
+		echo json_encode($arreglo);
 	}
 	//------------------------------ACTUALIZAR-----------------------------//
 	function update_header(){
@@ -313,6 +321,7 @@ require_once("con_db.php");
 	$texto= $_POST["texto"];
 	$boton = $_POST["boton"];
 	$link = $_POST["link"];
+	// $id = $_POST['id'];
  	global $db;
  	$stmt = $db->prepare("UPDATE proye145_cuda_dweb.header SET header_title =?, header_content =?, header_link =?, header_href =? WHERE header_id = 1");
  	$stmt->execute(array($titulo, $texto, $boton, $link));
