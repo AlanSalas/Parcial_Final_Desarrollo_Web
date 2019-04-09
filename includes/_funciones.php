@@ -86,7 +86,7 @@ require_once("con_db.php");
 
   		case 'consultar_miembro':
     	consultar_miembro($registro= $_POST["id"]);		
-		default;
+		break;
 
 		case "consultar_team":
   		consultar_team();
