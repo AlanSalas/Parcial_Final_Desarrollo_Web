@@ -488,7 +488,7 @@ table {
     height:55px;
     border-radius:3px;
     background:#273a71;
-    font-size:18px;///
+    font-size:18px;
     line-height:18px;
     color:#ffffff;
     border:none;
@@ -611,9 +611,7 @@ footer ul li a{
 }
 footer ul li a:hover{/*para cambiar de color con el cursor*/
     color:#30bae7;
-    transition:all 0.4s;
-    }
-
+    transition:all 0.4s;    
 }
 footer p a:hover{/*color del encabezado de abajo*/
     color:#ffffff;
