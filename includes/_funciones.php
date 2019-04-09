@@ -665,7 +665,7 @@ function eliminar_team($id){
 		echo json_encode($array); //Imprime Json encodeado		
 	}
 	//------------------------------FUNCION PARA INSERTAR PORTAFOLIO-----------------------------//
-	function insertar_about(){
+	function insertar_portafolio(){
 		//Conectar a la bd
 		global $mysqli;
 		$titulo = $_POST['titulo'];
@@ -735,25 +735,5 @@ function eliminar_team($id){
 		$rsl = $mysqli->query($sql);
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
-	}
-	//------------------------------FUNCION PARA CARGAR IMAGENES------------------------------------//
-	function carga_foto(){
-		if (isset($_FILES["foto"])) {
-			$file = $_FILES["foto"];
-			$nombre = $_FILES["foto"]["name"];
-			$temporal = $_FILES["foto"]["tmp_name"];
-			$tipo = $_FILES["foto"]["type"];
-			$tam = $_FILES["foto"]["size"];
-			$dir = "../img/usuarios/";
-			$respuesta = [
-				"archivo" => "img/portafolio.png",
-				"status" => 0
-			];
-			if(move_uploaded_file($temporal, $dir.$nombre)){
-				$respuesta["archivo"] = "img".$nombre;
-				$respuesta["status"] = 1;
-			}
-			echo json_encode($respuesta);
-		}
 	}
 ?>
