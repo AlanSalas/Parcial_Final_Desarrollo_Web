@@ -11,4 +11,12 @@ $mysqli = new mysqli($server, $user, $password, $db);
 	   echo "Errno: " . $mysqli->connect_errno . "\n";
 	   exit;
    }
+
+   try{
+	$db = new PDO('mysql:host=proyectparadox.com; dbname=proye145_cuda_dweb', 'proye145_cuda', 'Estrella.1092?');
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	} catch(PDOException $ex) {
+    echo "An Error occured!"; 
+    some_logging_function($ex->getMessage());
+}
 ?>

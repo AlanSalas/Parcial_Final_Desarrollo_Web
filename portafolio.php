@@ -116,7 +116,7 @@
             });
         }
         //FUNCION PARA CONSULTAR A LA BD
-        function consultar_about() {
+        function consultar() {
             let obj = {
                 "accion": "consultar_portafolio"
             };
