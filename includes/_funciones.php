@@ -309,11 +309,8 @@ require_once("con_db.php");
 		global $mysqli;
 		$query = "SELECT * FROM header";
 		$respuesta = $mysqli->query($query);
-		$arreglo = [];
-		while($fila=mysqli_fetch_array($respuesta)){
-			array_push($arreglo, $fila);
-		}
-		echo json_encode($arreglo);
+		$fila = mysqli_fetch_array($respuesta);
+		echo json_encode($fila); //Imprime Json encodeado	
 	}
 	//------------------------------ACTUALIZAR-----------------------------//
 	function update_header(){
