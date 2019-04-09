@@ -24,9 +24,7 @@ require_once("con_db.php");
 		case 'carga_foto':
 			carga_foto();
 			break;
-
-			//HEADER
-
+	//HEADER
 		case 'consultar_header':
 			consultar_header();
 		break;
@@ -34,8 +32,6 @@ require_once("con_db.php");
 		case 'update_header':
 			update_header();
 		break;
-
-
 	//SERVICES
 		case 'consultar_services':
 			consultar_services();
@@ -67,11 +63,24 @@ require_once("con_db.php");
 		break;
 		case 'editar_skills':
 			editar_skills();
-		break;		
-
-
-		//TEAM
-
+		break;
+	//ABOUT
+		case 'consultar_about':
+			consultar_about();
+		break;
+		case 'insertar_about':
+			insertar_about();
+		break;
+		case 'eliminar_about';
+			eliminar_about($_POST['id']);
+		break;
+		case 'consultar_registro_about':
+			consultar_registro_about($_POST['id']);
+		break;
+		case 'editar_about':
+			editar_about();
+		break;
+	//TEAM
 		case "insertar_team":
   		insertar_team();
   		break;
@@ -90,13 +99,43 @@ require_once("con_db.php");
 
 		case "consultar_team":
   		consultar_team();
-
-  break;
-
+  		break;
+        //CONTACTO
+		case 'consultar_contacto':
+			consultar_contacto();
+		break;
+		case 'insertar_contacto':
+			insertar_contacto();
+		break;
+		case 'eliminar_contacto';
+			eliminar_contacto($_POST['id']);
+			break;
+		case 'consultar_registro_contacto':
+			consultar_registro_contacto($_POST['id']);
+			break;
+		case 'editar_contacto':
+			editar_contacto();
+			break;
+		//PORTAFOLIO
+		case 'consultar_portafolio':
+			consultar_portafolio();
+		break;
+		case 'insertar_portafolio':
+			insertar_portafolio();
+		break;
+		case 'eliminar_portafolio';
+			eliminar_portafolio($_POST['id']);
+		break;
+		case 'consultar_registro_portafolio':
+			consultar_registro_portafolio($_POST['id']);
+		break;
+		case 'editar_portafolio':
+			editar_portafolio();
+		break;
 
 		default:
 			# code...
-			break;
+		break;
 	}
     //------------------------------FUNCIONES MODULO USUARIOS------------------------------//
     //------------------------------FUNCION PARA VALIDAR LOGIN-----------------------------//
@@ -255,10 +294,8 @@ require_once("con_db.php");
 	}
 
 
-		//------------------------------FUNCIONES MODULO HEADER------------------------------//
-
-		//------------------------------CONSULTAR-----------------------------//
-
+	//------------------------------FUNCIONES MODULO HEADER------------------------------//
+	//------------------------------CONSULTAR-----------------------------//
 	function consultar_header(){
  	global $db;
  	$query = "SELECT * FROM proye145_cuda_dweb.header";
@@ -267,26 +304,22 @@ require_once("con_db.php");
 	$fila = $stmt->fetch(PDO::FETCH_ASSOC);
 	echo json_encode($fila);
 	}
-
-		//------------------------------ACTUALIZAR-----------------------------//
-
+	//------------------------------ACTUALIZAR-----------------------------//
 	function update_header(){
-$titulo= $_POST["titulo"];
-$texto= $_POST["texto"];
-$boton = $_POST["boton"];
-$link = $_POST["link"];
-
+	$titulo= $_POST["titulo"];
+	$texto= $_POST["texto"];
+	$boton = $_POST["boton"];
+	$link = $_POST["link"];
  	global $db;
  	$stmt = $db->prepare("UPDATE proye145_cuda_dweb.header SET header_title =?, header_content =?, header_link =?, header_href =? WHERE header_id = 1");
  	$stmt->execute(array($titulo, $texto, $boton, $link));
  	$affected_rows = $stmt->rowCount();
- 	if ($affected_rows > 0) {
- 		echo "1";
- 	} else {
- 		echo"0";
+ 		if ($affected_rows > 0) {
+ 			echo "1";
+ 		} else {
+ 			echo"0";
+ 		}
  	}
- }
-
 	//------------------------------FUNCIONES MODULO SERVICES------------------------------------//
 	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
 	function consultar_services(){
@@ -433,7 +466,7 @@ $link = $_POST["link"];
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
 	}
-	//------------------------------FUNCION PARA EDITAR SERVICE-----------------------------//
+	//------------------------------FUNCION PARA EDITAR SKILLS-----------------------------//
 	function editar_skills(){
 		global $mysqli;
 		extract($_POST);
@@ -458,7 +491,100 @@ $link = $_POST["link"];
 			}
 		}
 	}
-
+	//------------------------------FUNCIONES MODULO ABOUT US--------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR ABOUT US-----------------------------//
+	function consultar_about(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM about";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR ABOUT US-----------------------------//
+	function insertar_about(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo_us'];
+		$subtitulo = $_POST['subtitulo_us'];
+		$descripcion = $_POST['descrip_us'];
+		$nombre = $_POST['nombre_us'];
+		$cargo = $_POST['cargo_us'];
+		$imagen = $_POST['img_us'];
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descripcion) && empty($nombre) && empty($cargo) && empty($imagen)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($descripcion)) {
+			echo "4";
+		}elseif (empty($nombre)) {
+			echo "5";
+		}elseif (empty($cargo)) {
+			echo "6";
+		}elseif (empty($imagen)) {
+			echo "7";
+		}else{
+			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR ABOUT US-----------------------------//
+	function eliminar_about($id){
+		global $mysqli;
+		$sql = "DELETE FROM about WHERE id_us = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION PARA EDITAR ABOUT US----------------------------//
+	function editar_about(){
+		global $mysqli;
+		extract($_POST);
+		//Validacion de campos vacios
+		if (empty($titulo_us) && empty($subtitulo_us) && empty($descrip_us) && empty($nombre_us) && empty($cargo_us) && empty($img_us)) {
+			echo "0";
+		}elseif (empty($titulo_us)) {
+			echo "2";
+		}elseif (empty($subtitulo_us)) {
+			echo "3";
+		}elseif (empty($descrip_us)) {
+			echo "4";
+		}elseif (empty($nombre_us)) {
+			echo "5";
+		}elseif (empty($cargo_us)) {
+			echo "6";
+		}elseif (empty($img_us)) {
+			echo "7";
+		}else{
+			$sql = "UPDATE about SET titulo_us = '$titulo_us', subtitulo_us = '$subtitulo_us', descrip_us = '$descrip_us',cargo_us = '$cargo_us',nombre_us = '$nombre_us', img_us = '$img_us'
+			WHERE id_us = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "8";
+			}else{
+				echo "9";
+			}
+		}
+	}
+	//------------------------------FUNCION CONSULTAR ABOUT A EDITAR-----------------------------//
+	function consultar_registro_about($id){
+		global $mysqli;
+		$sql = "SELECT * FROM about WHERE id_us = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
 	//------------------------------FUNCIONES MODULO TEAM------------------------------//
 
 	function consultar_team(){
@@ -524,4 +650,90 @@ function eliminar_team($id){
   }
 }
 
+//------------------------------FUNCIONES MODULO PORTAFOLIO--------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR PORTAFOLIO-----------------------------//
+	function consultar_portafolio(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM portafolio";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR PORTAFOLIO-----------------------------//
+	function insertar_portafolio(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo'];
+		$subtitulo = $_POST['subtitulo'];
+		$imagen = $_POST['img_port'];
+		$descripcion = $_POST['descri_img'];
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descripcion)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($imagen)) {
+			echo "10";
+		}elseif (empty($descripcion)) {
+			echo "5";
+		}else{
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img_us' 1,'$descripcion')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR PORTAFOLIO -----------------------------//
+	function eliminar_portafolio($id){
+		global $mysqli;
+		$sql = "DELETE FROM portafolio WHERE id_port = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION PARA EDITAR PORTAFOLIO ----------------------------//
+	function editar_portafolio(){
+		global $mysqli;
+		extract($_POST);
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descri_img)){
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($img_port)) {
+			echo "10";
+		}elseif (empty($descri_img)) {
+			echo "5";
+		}else{
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$img_port', descri_img = '$descri_img'
+			WHERE id_port = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "8";
+			}else{
+				echo "9";
+			}
+		}
+	}
+	//------------------------------FUNCION CONSULTAR PORTAFOLIO A EDITAR-----------------------------//
+	function consultar_registro_portafolio($id){
+		global $mysqli;
+		$sql = "SELECT * FROM portafolio WHERE id_port = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
 ?>

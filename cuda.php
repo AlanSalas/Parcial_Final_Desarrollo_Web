@@ -1,3 +1,6 @@
+<?php
+    require_once("includes/con_db.php");    
+?>
 <!DOCTYPE html>
 <html lang="mx">
 
@@ -56,16 +59,23 @@
     </div>
 
 
-
+    <?php
+    global $mysqli;
+    $sql = "SELECT titulo, subtitulo FROM services LIMIT 1";
+    $rsl = $mysqli->query($sql);
+    
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>
     <!--SERVICES-->
     <section class="wrapper" id="service">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2>SERVICES WE PROVIDE</h2>
+                    <h2><?php echo $fila["titulo"];?></h2>
+    
                     <div class="bottomline"></div>
-                    <p>We are working with both individuals and businesses from all over the globe to create awesome
-                        websites and applications.</p>
+                    <p><?php echo $fila["subtitulo"];?></p>
+        <?php } ?>
                 </div>
             </div>
             <div class="row">
