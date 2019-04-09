@@ -101,6 +101,8 @@ require_once("con_db.php");
   		consultar_team();
   		break;
 
+
+    
         //CONTACTO
 
 		case 'consultar_contacto':
@@ -134,6 +136,7 @@ require_once("con_db.php");
 		case 'editar_portafolio':
 			editar_portafolio();
 		break;
+
 
         default:
 
