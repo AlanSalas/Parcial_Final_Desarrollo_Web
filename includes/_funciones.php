@@ -136,11 +136,6 @@ require_once("con_db.php");
 		case 'editar_portafolio':
 			editar_portafolio();
 		break;
-
-
-        default:
-
-
 		default:
 			# code...
 		break;
