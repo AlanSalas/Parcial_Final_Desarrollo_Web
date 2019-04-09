@@ -32,17 +32,38 @@
                 </a>
 
             </li>
-            <!--PORTFOLIO
+            <!--PORTFOLIO-->
             
-        
+         <li class="nav-item">
+                <a class="nav-link" href="portafolio.php" id="portafolio">
+                    Portafolio 
+                </a>
+
+            </li>
             
+            
+<<<<<<< HEAD
+=======
             -->
             <!--ABOUTUS-->
+>>>>>>> d0533e5fae76ba63d580192ea9ae87d4ebf6e50d
             <li class="nav-item">
                 <a class="nav-link" href="about.php" id="about">
                     About
                 </a>
             </li>
+<<<<<<< HEAD
+ 
+            <!--CONTACTO-->
+             <li class="nav-item">
+                <a class="nav-link" href="contacto.php" id="contacto">
+                    Contacto
+                </a>
+
+            </li>
+           </ul>
+=======
         </ul>
+>>>>>>> d0533e5fae76ba63d580192ea9ae87d4ebf6e50d
     </div>
 </nav>

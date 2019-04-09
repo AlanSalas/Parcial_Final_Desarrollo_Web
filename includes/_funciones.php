@@ -106,7 +106,49 @@ require_once("con_db.php");
 
 		case "consultar_team":
   		consultar_team();
+<<<<<<< HEAD
+
+  break;
+           //CONTACTO
+		case 'consultar_contacto':
+			consultar_contacto();
+		break;
+		case 'insertar_contacto':
+			insertar_contacto();
+		break;
+		case 'eliminar_contacto';
+			eliminar_contacto($_POST['id']);
+			break;
+		case 'consultar_registro_contacto':
+			consultar_registro_contacto($_POST['id']);
+			break;
+		case 'editar_contacto':
+			editar_contacto();
+			break;
+
+			//PORTAFOLIO
+		case 'consultar_portafolio':
+			consultar_portafolio();
+		break;
+		case 'insertar_portafolio':
+			insertar_portafolio();
+		break;
+		case 'eliminar_portafolio';
+			eliminar_portafolio($_POST['id']);
+		break;
+		case 'consultar_registro_portafolio':
+			consultar_registro_portafolio($_POST['id']);
+		break;
+		case 'editar_portafolio':
+			editar_portafolio();
+		break;
+        default:
+
+		break;		
+
+=======
   		break;
+>>>>>>> d0533e5fae76ba63d580192ea9ae87d4ebf6e50d
 
 		default:
 			# code...
@@ -630,4 +672,111 @@ function eliminar_team($id){
     echo "Se generó un error, intenta nuevamente";
   }
 }
+
+//------------------------------FUNCIONES MODULO PORTAFOLIO--------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR PORTAFOLIO-----------------------------//
+	function consultar_portafolio(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM portafolio";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR PORTAFOLIO-----------------------------//
+	function insertar_about(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo'];
+		$subtitulo = $_POST['subtitulo'];
+		$imagen = $_POST['img_port'];
+		$descripcion = $_POST['descri_img'];
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descripcion)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($imagen)) {
+			echo "10";
+		}elseif (empty($descripcion)) {
+			echo "5";
+		}else{
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img_us' 1,'$descripcion')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR PORTAFOLIO -----------------------------//
+	function eliminar_portafolio($id){
+		global $mysqli;
+		$sql = "DELETE FROM portafolio WHERE id_port = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION PARA EDITAR PORTAFOLIO ----------------------------//
+	function editar_portafolio(){
+		global $mysqli;
+		extract($_POST);
+		$expresion = '/^[9|9|5][0-10]{8}$/';
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($descri_img)){
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($img_port)) {
+			echo "10";
+		}elseif (empty($descri_img)) {
+			echo "5";
+		}else{
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$img_port', descri_img = '$descri_img'
+			WHERE id_port = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "8";
+			}else{
+				echo "9";
+			}
+		}
+	}
+	//------------------------------FUNCION CONSULTAR PORTAFOLIO A EDITAR-----------------------------//
+	function consultar_registro_portafolio($id){
+		global $mysqli;
+		$sql = "SELECT * FROM portafolio WHERE id_port = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA CARGAR IMAGENES------------------------------------//
+	function carga_foto(){
+		if (isset($_FILES["foto"])) {
+			$file = $_FILES["foto"];
+			$nombre = $_FILES["foto"]["name"];
+			$temporal = $_FILES["foto"]["tmp_name"];
+			$tipo = $_FILES["foto"]["type"];
+			$tam = $_FILES["foto"]["size"];
+			$dir = "../img/usuarios/";
+			$respuesta = [
+				"archivo" => "img/portafolio.png",
+				"status" => 0
+			];
+			if(move_uploaded_file($temporal, $dir.$nombre)){
+				$respuesta["archivo"] = "img".$nombre;
+				$respuesta["status"] = 1;
+			}
+			echo json_encode($respuesta);
+		}
+	}
 ?>
