@@ -55,10 +55,10 @@
                             <tr>
                                 <th>Titulo</th>
                                 <th>Subtitulo</th>
-                                 <th>Descripcion</th>
-                                  <th>Cargo</th>
+                                <th>Descripcion</th>
+                                <th>Cargo</th>
                                 <th>Nombre</th>
-                                 <th>Foto</th>
+                                <th>Foto</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -70,25 +70,25 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombre">Titulo</label>
+                                    <label for="titulo">Titulo</label>
                                     <input type="text" id="inputTitulo" name="titulo" class="form-control">
                                 </div>
                                <div class="form-group">
-                                    <label for="nombre">Subtitulo</label>
+                                    <label for="subtitulo">Subtitulo</label>
                                     <input type="text" id="inputSubtitulo" name="subtitulo" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="nombre">Descripcion</label>
+                                    <label for="desc">Descripcion</label>
                                     <input type="text" id="inputDescripcion" name="descripcion" class="form-control">
                                 </div>
                                  <div class="form-group">
-                                    <label for="telefono">Nombre</label>
+                                    <label for="nombre">Nombre</label>
                                     <input type="text" id="inputNombre" name="nombre" class="form-control">
                                 </div>                               
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="nombre">Cargo</label>
+                                    <label for="cargo">Cargo</label>
                                     <input type="text" id="inputCargo" name="cargo" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -96,6 +96,7 @@
                                     <input type="file" name="foto" id="foto">
                                     <input type="hidden" name="ruta" id="ruta" readonly="readonly">
                                 </div>
+                                <div id="preview"></div>
                             </div>
                         </div>
                         <div class="row">
@@ -170,12 +171,12 @@
             let descripcion = $("#inputDescripcion").val();
             let cargo = $("#inputCargo").val();
             let nombre = $("#inputNombre").val();
-            let img_us = $('#ruta').val();
+            let img_us = $("#ruta").val();
             let obj = {
                 "accion": "insertar_about",
                 "titulo_us": titulo,
                 "subtitulo_us": subtitulo,
-                 "descrip_us": descripcion,
+                "descrip_us": descripcion,
                 "cargo_us": cargo,
                 "nombre_us": nombre,
                 "img_us": img_us
@@ -197,6 +198,10 @@
                 if (v == 0) {
                     $("#error").html("Campos vacios").fadeIn();
                 }
+                if (v == 1) {
+                    alert("About insertado");
+                    location.reload();  
+                }
                 if (v == 2) {
                     $("#error").html("Favor de ingresar un Titulo").fadeIn();
                 }
@@ -213,7 +218,7 @@
                     $("#error").html("Favor de ingresar una Nombre").fadeIn();
                 }
                 if (v == 7) {
-                    $("#error").html("Favor de ingresar una foto").fadeIn();
+                    $("#error").html("Favor de ingresar una Foto").fadeIn();
                 }
                 if (v == 8) {
                     alert("About editado");
