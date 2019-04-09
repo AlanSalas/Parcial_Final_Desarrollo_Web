@@ -25,7 +25,7 @@ require_once("con_db.php");
 			carga_foto();
 			break;
 
-			//HEADER
+	//HEADER
 
 		case 'consultar_header':
 			consultar_header();
@@ -69,7 +69,7 @@ require_once("con_db.php");
 			editar_skills();
 		break;
 
-		//ABOUT
+	//ABOUT
 		case 'consultar_about':
 			consultar_about();
 		break;
@@ -85,12 +85,8 @@ require_once("con_db.php");
 		case 'editar_about':
 			editar_about();
 		break;
-        default:
 
-		break;		
-
-
-		//TEAM
+	//TEAM
 
 		case "insertar_team":
   		insertar_team();
@@ -106,10 +102,11 @@ require_once("con_db.php");
 
   		case 'consultar_miembro':
     	consultar_miembro($registro= $_POST["id"]);		
-		default;
+			break;
 
 		case "consultar_team":
   		consultar_team();
+<<<<<<< HEAD
 
   break;
            //CONTACTO
@@ -149,10 +146,13 @@ require_once("con_db.php");
 
 		break;		
 
+=======
+  		break;
+>>>>>>> d0533e5fae76ba63d580192ea9ae87d4ebf6e50d
 
 		default:
 			# code...
-			break;
+		break;
 	}
     //------------------------------FUNCIONES MODULO USUARIOS------------------------------//
     //------------------------------FUNCION PARA VALIDAR LOGIN-----------------------------//
@@ -611,27 +611,6 @@ $link = $_POST["link"];
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
 	}
-	//------------------------------FUNCION PARA CARGAR IMAGENES------------------------------------//
-	function carga_foto(){
-		if (isset($_FILES["foto"])) {
-			$file = $_FILES["foto"];
-			$nombre = $_FILES["foto"]["name"];
-			$temporal = $_FILES["foto"]["tmp_name"];
-			$tipo = $_FILES["foto"]["type"];
-			$tam = $_FILES["foto"]["size"];
-			$dir = "../img/usuarios/";
-			$respuesta = [
-				"archivo" => "img/BlogB.png",
-				"status" => 0
-			];
-			if(move_uploaded_file($temporal, $dir.$nombre)){
-				$respuesta["archivo"] = "img".$nombre;
-				$respuesta["status"] = 1;
-			}
-			echo json_encode($respuesta);
-		}
-	}
-
 	//------------------------------FUNCIONES MODULO TEAM------------------------------//
 
 	function consultar_team(){
