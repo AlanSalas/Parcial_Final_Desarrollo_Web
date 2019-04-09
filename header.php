@@ -39,7 +39,7 @@
         <div class="btn-toolbar mb-2 mb-md-0">
               <div class= "btn-group mr-2">  
                          <form action="" enctype="form-data" id="form_data">               
-                <button type="button" class="btn btn-sm btn-outline-success" id="guardar_datos" ">Guardar</button>
+                <button type="button" class="btn btn-sm btn-outline-success" id="guardar_datos">Guardar</button>
           </div>
         </div>
       </div>
@@ -125,10 +125,10 @@ $(function consultarHeader(){
 
     $.post('includes/_funciones.php', obj, function(r){
 
-    $("#tituloHeader").val(r.title_header);
-    $("#textoHeader").val(r.content_header);
-    $("#botonHeader").val(r.link_header);
-    $("#linkHeader").val(r.href_header);
+    $("#tituloHeader").val(r.header_title);
+    $("#textoHeader").val(r.header_content);
+    $("#botonHeader").val(r.header_link);
+    $("#linkHeader").val(r.header_href);
     }, "JSON");
 
    });
