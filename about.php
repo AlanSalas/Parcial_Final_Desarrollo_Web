@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Usuarios</title>
+    <title>About Us</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/template-admin.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/unid-ico.ico">
@@ -22,7 +22,7 @@
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">About</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">About Us</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -39,7 +39,7 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="main">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">About</h1>
+                    <h1 class="h2">About Us</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button type="button" class="btn btn-sm btn-outline-danger cancelar">Cancelar</button>
@@ -81,19 +81,18 @@
                                     <label for="nombre">Descripcion</label>
                                     <input type="text" id="inputDescripcion" name="descripcion" class="form-control">
                                 </div>
+                                 <div class="form-group">
+                                    <label for="telefono">Nombre</label>
+                                    <input type="text" id="inputNombre" name="nombre" class="form-control">
+                                </div>                               
+                            </div>
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="nombre">Cargo</label>
                                     <input type="text" id="inputCargo" name="cargo" class="form-control">
                                 </div>
-                                <div id="preview"></div>
-                            </div>
-                            <div class="col">
                                 <div class="form-group">
-                                    <label for="telefono">Nombre</label>
-                                    <input type="tel" id="inputNombre" name="nombre" class="form-control">
-                                </div>
-                                 <div class="form-group">
-                                    <label for="img">Foto:</label>
+                                    <label for="img">Imagen:</label>
                                     <input type="file" name="foto" id="foto">
                                     <input type="hidden" name="ruta" id="ruta" readonly="readonly">
                                 </div>
@@ -129,7 +128,7 @@
             });
         }
         //FUNCION PARA CONSULTAR A LA BD
-        function consultar_about() {
+        function consultar() {
             let obj = {
                 "accion": "consultar_about"
             };
@@ -173,7 +172,7 @@
             let nombre = $("#inputNombre").val();
             let img_us = $('#ruta').val();
             let obj = {
-                "accion": "insertar_usuarios",
+                "accion": "insertar_about",
                 "titulo_us": titulo,
                 "subtitulo_us": subtitulo,
                  "descrip_us": descripcion,
@@ -204,17 +203,25 @@
                 if (v == 3) {
                     $("#error").html("Favor de ingresar un Subtitulo").fadeIn();
                 }
-                if (v == 5) {
+                if (v == 4) {
                     $("#error").html("Favor de ingresar una Descripcion").fadeIn();
                 }
-                if (v == 6) {
+                if (v == 5) {
                     $("#error").html("Favor de ingresar un Cargo").fadeIn();
                 }
-                if (v == 7) {
+                if (v == 6) {
                     $("#error").html("Favor de ingresar una Nombre").fadeIn();
                 }
-                if (v == 10) {
+                if (v == 7) {
                     $("#error").html("Favor de ingresar una foto").fadeIn();
+                }
+                if (v == 8) {
+                    alert("About editado");
+                    location.reload();
+                }
+                if (v == 9) {
+                    alert("Ocurrio un error, intenta nuevamente");
+                    location.reload();
                 }
             });
         });
@@ -249,19 +256,17 @@
             $("#h2-title").text("Editar About");
             $("#guardar_datos").text("Editar").data("editar", 1).data("id", id);
             $.post("includes/_funciones.php", obj, function (r) {
-                $("#inputNombre").val(r.nombre_usr);
-                $("#inputCorreo").val(r.correo_usr);
-                let template =
-                    `
-                    <img src="${r.foto_usr}" class="img-thumbnail" width="200" height="200"/>
-                    `;
-                $("#ruta").val(r.img_us);
-                $("#preview").html(template);
                 $("#inputTitulo").val(r.titulo_us);
                 $("#inputSubtitulo").val(r.subtitulo_us);
                 $("#inputDescripcion").val(r.descrip_us);
                 $("#inputCargo").val(r.cargo_us);
                 $("#inputNombre").val(r.nombre_us);
+                let template =
+                    `
+                    <img src="${r.img_us}" class="img-thumbnail" width="200" height="200"/>
+                    `;
+                $("#ruta").val(r.img_us);
+                $("#preview").html(template);
             }, "JSON");
         });
         //FUNCION DESHABILITAR ATRAS EN EL NAVEGADOR

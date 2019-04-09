@@ -496,24 +496,23 @@ $link = $_POST["link"];
 		$nombre = $_POST['nombre_us'];
 		$cargo = $_POST['cargo_us'];
 		$imagen = $_POST['img_us'];
-		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descripcion) && empty($nombre) && empty($cargo)) {
+		if (empty($titulo) && empty($subtitulo) && empty($descripcion) && empty($nombre) && empty($cargo) && empty($imagen)) {
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($img_us)) {
-			echo "10";
 		}elseif (empty($descripcion)) {
-			echo "5";
+			echo "4";
 		}elseif (empty($nombre)) {
-			echo "6";
+			echo "5";
 		}elseif (empty($cargo)) {
+			echo "6";
+		}elseif (empty($imagen)) {
 			echo "7";
 		}else{
-			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us' 1)";
+			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -533,22 +532,20 @@ $link = $_POST["link"];
 	function editar_about(){
 		global $mysqli;
 		extract($_POST);
-		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo_us) && empty($subtitulo_us) && empty($descrip_us) && empty($nombre_us)
-	     && empty($cargo_us)){
+		if (empty($titulo_us) && empty($subtitulo_us) && empty($descrip_us) && empty($nombre_us) && empty($cargo_us) && empty($img_us)) {
 			echo "0";
 		}elseif (empty($titulo_us)) {
 			echo "2";
 		}elseif (empty($subtitulo_us)) {
 			echo "3";
-		}elseif (empty($img_us)) {
-			echo "10";
 		}elseif (empty($descrip_us)) {
-			echo "5";
+			echo "4";
 		}elseif (empty($nombre_us)) {
-			echo "6";
+			echo "5";
 		}elseif (empty($cargo_us)) {
+			echo "6";
+		}elseif (empty($img_us)) {
 			echo "7";
 		}else{
 			$sql = "UPDATE about SET titulo_us = '$titulo_us', subtitulo_us = '$subtitulo_us', descrip_us = '$descrip_us',cargo_us = '$cargo_us',nombre_us = '$nombre_us', img_us = '$img_us'
@@ -564,7 +561,7 @@ $link = $_POST["link"];
 	//------------------------------FUNCION CONSULTAR ABOUT A EDITAR-----------------------------//
 	function consultar_registro_about($id){
 		global $mysqli;
-		$sql = "SELECT * FROM aboutut WHERE id_us = $id";
+		$sql = "SELECT * FROM about WHERE id_us = $id";
 		$rsl = $mysqli->query($sql);
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
