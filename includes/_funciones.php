@@ -534,7 +534,7 @@ require_once("con_db.php");
 		}elseif (empty($imagen)) {
 			echo "7";
 		}else{
-			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us')";
+			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$imagen')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -570,7 +570,7 @@ require_once("con_db.php");
 		}elseif (empty($img_us)) {
 			echo "7";
 		}else{
-			$sql = "UPDATE about SET titulo_us = '$titulo_us', subtitulo_us = '$subtitulo_us', descrip_us = '$descrip_us',cargo_us = '$cargo_us',nombre_us = '$nombre_us', img_us = '$img_us'
+			$sql = "UPDATE about SET titulo_us = '$titulo_us', subtitulo_us = '$subtitulo_us', descrip_us = '$descrip_us', cargo_us = '$cargo_us', nombre_us = '$nombre_us', img_us = '$img_us'
 			WHERE id_us = '$id'";
 			$rsl = $mysqli->query($sql);
 			if ($rsl) {
