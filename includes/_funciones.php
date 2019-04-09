@@ -24,9 +24,7 @@ require_once("con_db.php");
 		case 'carga_foto':
 			carga_foto();
 			break;
-
 	//HEADER
-
 		case 'consultar_header':
 			consultar_header();
 		break;
@@ -34,8 +32,6 @@ require_once("con_db.php");
 		case 'update_header':
 			update_header();
 		break;
-
-
 	//SERVICES
 		case 'consultar_services':
 			consultar_services();
@@ -68,7 +64,6 @@ require_once("con_db.php");
 		case 'editar_skills':
 			editar_skills();
 		break;
-
 	//ABOUT
 		case 'consultar_about':
 			consultar_about();
@@ -85,9 +80,7 @@ require_once("con_db.php");
 		case 'editar_about':
 			editar_about();
 		break;
-
 	//TEAM
-
 		case "insertar_team":
   		insertar_team();
   		break;
@@ -102,14 +95,12 @@ require_once("con_db.php");
 
   		case 'consultar_miembro':
     	consultar_miembro($registro= $_POST["id"]);		
-			break;
+		break;
 
 		case "consultar_team":
   		consultar_team();
-<<<<<<< HEAD
-
-  break;
-           //CONTACTO
+  		break;
+        //CONTACTO
 		case 'consultar_contacto':
 			consultar_contacto();
 		break;
@@ -125,8 +116,7 @@ require_once("con_db.php");
 		case 'editar_contacto':
 			editar_contacto();
 			break;
-
-			//PORTAFOLIO
+		//PORTAFOLIO
 		case 'consultar_portafolio':
 			consultar_portafolio();
 		break;
@@ -142,13 +132,6 @@ require_once("con_db.php");
 		case 'editar_portafolio':
 			editar_portafolio();
 		break;
-        default:
-
-		break;		
-
-=======
-  		break;
->>>>>>> d0533e5fae76ba63d580192ea9ae87d4ebf6e50d
 
 		default:
 			# code...
@@ -311,10 +294,8 @@ require_once("con_db.php");
 	}
 
 
-		//------------------------------FUNCIONES MODULO HEADER------------------------------//
-
-		//------------------------------CONSULTAR-----------------------------//
-
+	//------------------------------FUNCIONES MODULO HEADER------------------------------//
+	//------------------------------CONSULTAR-----------------------------//
 	function consultar_header(){
  	global $db;
  	$query = "SELECT * FROM proye145_cuda_dweb.header";
@@ -323,26 +304,22 @@ require_once("con_db.php");
 	$fila = $stmt->fetch(PDO::FETCH_ASSOC);
 	echo json_encode($fila);
 	}
-
-		//------------------------------ACTUALIZAR-----------------------------//
-
+	//------------------------------ACTUALIZAR-----------------------------//
 	function update_header(){
-$titulo= $_POST["titulo"];
-$texto= $_POST["texto"];
-$boton = $_POST["boton"];
-$link = $_POST["link"];
-
+	$titulo= $_POST["titulo"];
+	$texto= $_POST["texto"];
+	$boton = $_POST["boton"];
+	$link = $_POST["link"];
  	global $db;
  	$stmt = $db->prepare("UPDATE proye145_cuda_dweb.header SET header_title =?, header_content =?, header_link =?, header_href =? WHERE header_id = 1");
  	$stmt->execute(array($titulo, $texto, $boton, $link));
  	$affected_rows = $stmt->rowCount();
- 	if ($affected_rows > 0) {
- 		echo "1";
- 	} else {
- 		echo"0";
+ 		if ($affected_rows > 0) {
+ 			echo "1";
+ 		} else {
+ 			echo"0";
+ 		}
  	}
- }
-
 	//------------------------------FUNCIONES MODULO SERVICES------------------------------------//
 	//------------------------------FUNCION PARA CONSULTAR REGISTROS-----------------------------//
 	function consultar_services(){
@@ -489,7 +466,7 @@ $link = $_POST["link"];
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
 	}
-	//------------------------------FUNCION PARA EDITAR SERVICE-----------------------------//
+	//------------------------------FUNCION PARA EDITAR SKILLS-----------------------------//
 	function editar_skills(){
 		global $mysqli;
 		extract($_POST);
