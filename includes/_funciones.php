@@ -682,18 +682,18 @@ function eliminar_team($id){
 		$descripcion = $_POST['descri_img'];
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descripcion)) {
+		if (empty($titulo) && empty($subtitulo) && empty($imagen)&& empty($descripcion)) {
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
 		}elseif (empty($imagen)) {
-			echo "10";
+			echo "4";
 		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img_us' 1,'$descripcion')";
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen' 1,'$descripcion')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -715,7 +715,7 @@ function eliminar_team($id){
 		extract($_POST);
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descri_img)){
+		if (empty($titulo) && empty($subtitulo) && empty($descri_img)&& empty($img_port)){
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
@@ -726,7 +726,7 @@ function eliminar_team($id){
 		}elseif (empty($descri_img)) {
 			echo "5";
 		}else{
-			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$img_port', descri_img = '$descri_img'
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$imagen', descripcion = '$descri_img'
 			WHERE id_port = '$id'";
 			$rsl = $mysqli->query($sql);
 			if ($rsl) {
@@ -743,5 +743,94 @@ function eliminar_team($id){
 		$rsl = $mysqli->query($sql);
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
+	}
+
+	//------------------------------FUNCIONES CONTACTO------------------------------------//
+	//------------------------------FUNCION PARA CONSULTAR CONTACTO-----------------------------//
+	function consultar_contacto(){
+		//Conectar a la BD
+		global $mysqli;
+		//Realizar consulta
+		$sql = "SELECT * FROM contacto";
+		$rsl = $mysqli->query($sql);
+		$array = [];
+		while ($row = mysqli_fetch_array($rsl)) {
+			array_push($array, $row);
+		}
+		echo json_encode($array); //Imprime Json encodeado		
+	}
+	//------------------------------FUNCION PARA INSERTAR CONTACTO-------------------------------//
+	function insertar_contacto(){
+		//Conectar a la bd
+		global $mysqli;
+		$titulo = $_POST['titulo'];
+		$subtitulo = $_POST['subtitulo'];
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$message = $_POST['message'];
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($name) && empty($email)&& empty($message)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($name)) {
+			echo "4";
+		}elseif (empty($email)) {
+			echo "5";
+		}elseif (empty($message)){
+			echo "6";
+		}else{
+			$sql = "INSERT INTO contacto VALUES('', '$titulo', '$subtitulo', '$name', '$email', '$message')";
+			$rsl = $mysqli->query($sql);
+			echo "1";
+		}
+	}
+	//------------------------------FUNCION PARA ELIMINAR CONTACTO-----------------------------//
+	function eliminar_contacto($id){
+		global $mysqli;
+		$sql = "DELETE FROM contacto WHERE id_contacto = $id";
+		$rsl = $mysqli->query($sql);
+		if ($rsl) {
+			echo "Se elimino correctamente";
+		}else{
+			echo "Se genero un error, intenta nuevamente";
+		}
+	}
+	//------------------------------FUNCION CONSULTAR REGISTRO A EDITAR-----------------------------//
+	function consultar_registro_contacto($id){
+		global $mysqli;
+		$sql = "SELECT * FROM contacto WHERE id_contacto = $id";
+		$rsl = $mysqli->query($sql);
+		$fila = mysqli_fetch_array($rsl);
+		echo json_encode($fila); //Imprime Json encodeado	
+	}
+	//------------------------------FUNCION PARA EDITAR CONTACTO-----------------------------//
+	function editar_contacto(){
+		global $mysqli;
+		extract($_POST);
+		//Validacion de campos vacios
+		if (empty($titulo) && empty($subtitulo) && empty($name) && empty($email)&&empty($message)) {
+			echo "0";
+		}elseif (empty($titulo)) {
+			echo "2";
+		}elseif (empty($subtitulo)) {
+			echo "3";
+		}elseif (empty($name)) {
+			echo "4";
+		}elseif (empty($email)) {
+			echo "5";
+		}elseif (empty($message)){
+			echo "6";
+		}else{
+			$sql = "UPDATE contacto SET titulo = '$titulo', subtitulo = '$subtitulo', name = '$name', email = '$email', message = '$message' WHERE id_contacto = '$id'";
+			$rsl = $mysqli->query($sql);
+			if ($rsl) {
+				echo "7";
+			}else{
+				echo "8";
+			}
+		}
 	}
 ?>

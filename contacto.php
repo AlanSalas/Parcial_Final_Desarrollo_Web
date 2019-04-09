@@ -74,22 +74,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="subtitle">Subtitulo</label>
-                                    <input type="text" id="inputSubtitle" name="subtitle" class="form-control">
+                                    <input type="text" id="inputSubtitulo" name="subtitulo" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="service">Name</label>
-                                    <input type="text" id="inputService" name="service" class="form-control">
+                                    <input type="text" id="inputName" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="desc">Email</label>
-                                    <input type="text" id="inputDesc" name="desc" class="form-control">
+                                    <input type="text" id="inputEmail" name="email" class="form-control">
                                 </div>
                                  <div class="col">
                                 <div class="form-group">
                                     <label for="desc">Message</label>
-                                    <input type="text" id="inputDesc" name="desc" class="form-control">
+                                    <input type="text" id="inputMessage" name="message" class="form-control">
                                 </div>
                                 <div id="preview"></div>
                             </div>
@@ -139,8 +139,9 @@
           <td>${e.name}</td>
           <td>${e.email}</td>
           <td>${e.message}</td>
-          <a href="#" data-id="${e.id_service}" class="editar_contacto">Editar</a>
-          <a href="#" data-id="${e.id_service}" class="eliminar_contacto">Eliminar</a>
+          <td>
+          <a href="#" data-id="${e.id_contacto}" class="editar_contacto">Editar</a>
+          <a href="#" data-id="${e.id_contacto}" class="eliminar_contacto">Eliminar</a>
           </td>
           </tr>
           `;
@@ -254,9 +255,6 @@
                 $("#inputName").val(r.name);
                 $("#inputEmail").val(r.email);
                  $("#inputMessage").val(r.message);
-                let template =
-
-                $("#preview").html(template);
             }, "JSON");
         });
         //FUNCION DESHABILITAR ATRAS EN EL NAVEGADOR
