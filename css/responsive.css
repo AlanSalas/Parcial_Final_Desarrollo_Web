@@ -42,6 +42,13 @@
 		#skill span {
 			margin-bottom:30px;
 		}
+
+		/*TEAM*/
+
+		#div2-1 h1 {
+			font-size: 20px;
+			line-height: 70px;
+		}
 	}
 	/*RESOLUCION PARA TABLETAS*/
 	@media only screen and (min-width: 768px) and (max-width: 959px){
