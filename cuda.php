@@ -327,78 +327,46 @@
 
 
     <!--ABOUT US-->
+    <?php
+    global $mysqli;
+    $sql = "SELECT titulo_us, subtitulo_us FROM about LIMIT 1";
+    $rsl = $mysqli->query($sql);  
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>
     <section class="wrapper" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2>WHAT POEPLE SAY ABOUT US</h2>
+                    <h2><?php echo $fila["titulo_us"];?></h2>
                     <div class="bottomline"></div>
-                    <p>Our clients love us!</p>
+                    <p><?php echo $fila["subtitulo_us"];?></p>
+                    <?php } ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div>
+           <div class="row">
+            <?php
+                global $mysqli;
+                $sql = "SELECT descrip_us, nombre_us, cargo_us, img_us FROM about LIMIT 4";
+                $rsl = $mysqli->query($sql);  
+                while ($fila = mysqli_fetch_array($rsl)) {
+            ?>
+               <div class="col-lg-6 col-md-6 col-sm-6">
+                 <div>
                         <div class="testimage">
-                            <img src="img/BlogB.png" alt="">
+                            <img src="<?php echo $fila["img_us"];?>" alt="">
                         </div>
-                        <div class="righttest">
+                   <div class="righttest">
                             <blockquote>
-                                “Nullam dapibus blandit orci, viverra gravida dui lobortis eget. Maecenas fringilla urna
-                                eu nisl scelerisque.”
+                               <?php echo $fila["descrip_us"];?>
                             </blockquote>
-                            <span>Chanel Iman</span>
-                            <span class="smalltest">CEO of Pinterest</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div>
-                        <div class="testimage">
-                            <img src="img/BlogB.png" alt="">
-                        </div>
-                        <div class="righttest">
-                            <blockquote>
-                                “Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis
-                                porta.”
-                            </blockquote>
-                            <span>ADRIANA LIMA</span>
-                            <span class="smalltest">Founder of Instagram</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div>
-                        <div class="testimage">
-                            <img src="img/BlogB.png" alt="">
-                        </div>
-                        <div class="righttest">
-                            <blockquote>
-                                “Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis
-                                porta.”
-                            </blockquote>
-                            <span>ANNE HATHAWAY</span>
-                            <span class="smalltest">Lead Designer at Behance</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div>
-                        <div class="testimage">
-                            <img src="img/BlogB.png" alt="">
-                        </div>
-                        <div class="righttest">
-                            <blockquote>
-                                “Phasellus non purus vel arcu tempor commodo. Fusce semper, purus vel luctus molestie,
-                                risus sem cursus neque.”
-                            </blockquote>
-                            <span>EMMA STONE</span>
-                            <span class="smalltest">Co-Founder of Shazam</span>
-                        </div>
-                    </div>
+                            <span><?php echo $fila["nombre_us"];?></span>
+                            <span class="smalltest"><?php echo $fila["cargo_us"];?></span>
+                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div>
+    </div>
     </section>
 
     <!--Contacto-->
