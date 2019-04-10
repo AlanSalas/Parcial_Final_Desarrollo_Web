@@ -50,7 +50,7 @@
                 </div>
                 <h2 id="h2-title">Consultar Portafolio</h2>
                 <div class="table-responsive view" id="show_data">
-                    <table class="table table-striped table-sm" id="list-portafolio">
+                    <table class="table table-striped table-sm" id="list-usuarios">
                         <thead>
                             <tr>
                                 <th>Titulo</th>
@@ -233,9 +233,7 @@
                     `;
                 $("#ruta").val(r.img_port);
                 $("#preview").html(template);
-                $("#inputTitulo").val(r.titulo);
-                $("#inputSubtitulo").val(r.subtitulo);
-                $("#inputDescripcion").val(r.descri_img);
+                
             }, "JSON");
         });
         //FUNCION DESHABILITAR ATRAS EN EL NAVEGADOR

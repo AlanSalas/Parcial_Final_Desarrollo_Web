@@ -699,7 +699,7 @@ function eliminar_team($id){
 		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen' 1,'$descripcion')";
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen','$descripcion')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
