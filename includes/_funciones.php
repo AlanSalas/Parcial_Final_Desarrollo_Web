@@ -439,21 +439,32 @@ require_once("con_db.php");
 		$subtitulo = $_POST['subtitulo'];
 		$skill = $_POST['skill'];
 		$porcentaje = $_POST['porcentaje'];
+		$loader = $_POST['loader'];
+		$color = $_POST['color'];
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje) && empty($loader) && empty($color)) {
 			echo "0";
-		}elseif (empty($titulo)) {
-			echo "2";
-		}elseif (empty($subtitulo)) {
-			echo "3";
-		}elseif (empty($skill)) {
-			echo "4";
-		}elseif (empty($porcentaje)) {
-			echo "5";
 		}else{
-			$sql = "INSERT INTO skills VALUES('', '$titulo', '$subtitulo', '$skill', '$porcentaje')";
+			$sql = "SELECT * FROM skills WHERE loader = '$loader'";
 			$rsl = $mysqli->query($sql);
-			echo "1";
+			$row = $rsl->fetch_assoc();
+			if ($row) {
+				echo "8";
+			}else{
+				if (empty($titulo)) {
+					echo "2";
+				}elseif (empty($subtitulo)) {
+					echo "3";
+				}elseif (empty($skill)) {
+					echo "4";
+				}elseif (empty($porcentaje)) {
+					echo "5";
+				}else{
+					$sql = "INSERT INTO skills VALUES('', '$titulo', '$subtitulo', '$skill', '$porcentaje', '$loader', '$color')";
+					$rsl = $mysqli->query($sql);
+					echo "1";
+				}
+			}
 		}
 	}
 	//------------------------------FUNCION PARA ELIMINAR SKILLS-----------------------------//
@@ -480,23 +491,32 @@ require_once("con_db.php");
 		global $mysqli;
 		extract($_POST);
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje) && empty($loader) && empty($color)) {
 			echo "0";
-		}elseif (empty($titulo)) {
-			echo "2";
-		}elseif (empty($subtitulo)) {
-			echo "3";
-		}elseif (empty($skill)) {
-			echo "4";
-		}elseif (empty($porcentaje)) {
-			echo "5";
 		}else{
-			$sql = "UPDATE skills SET titulo = '$titulo', subtitulo = '$subtitulo', skill = '$skill', skill_percentage = '$porcentaje' WHERE id_skill = '$id'";
+			$sql = "SELECT * FROM skills WHERE loader = '$loader'";
 			$rsl = $mysqli->query($sql);
-			if ($rsl) {
-				echo "6";
+			$row = $rsl->fetch_assoc();
+			if ($row) {
+				echo "8";
 			}else{
-				echo "7";
+				if (empty($titulo)) {
+					echo "2";
+				}elseif (empty($subtitulo)) {
+					echo "3";
+				}elseif (empty($skill)) {
+					echo "4";
+				}elseif (empty($porcentaje)) {
+					echo "5";
+				}else{
+					$sql = "UPDATE skills SET titulo = '$titulo', subtitulo = '$subtitulo', skill = '$skill', skill_percentage = '$porcentaje', loader = '$loader', color = '$color' WHERE id_skill = '$id'";
+					$rsl = $mysqli->query($sql);
+					if ($rsl) {
+						echo "6";
+					}else{
+						echo "7";
+					}
+				}
 			}
 		}
 	}

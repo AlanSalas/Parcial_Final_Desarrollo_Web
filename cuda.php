@@ -53,13 +53,14 @@
             <p>WORK WITH US!</p>
         </div>
     </div>
+
+    <!--SERVICES-->
     <?php
     global $mysqli;
     $sql = "SELECT titulo, subtitulo FROM services LIMIT 1";
     $rsl = $mysqli->query($sql);  
     while ($fila = mysqli_fetch_array($rsl)) {
     ?>
-    <!--SERVICES-->
     <section class="wrapper" id="service">
         <div class="container">
             <div class="row">
@@ -67,54 +68,28 @@
                     <h2><?php echo $fila["titulo"];?></h2>
                     <div class="bottomline"></div>
                     <p><?php echo $fila["subtitulo"];?></p>
-        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="row">
+            <?php
+                global $mysqli;
+                $sql = "SELECT service, service_desc, img_service FROM services LIMIT 4";
+                $rsl = $mysqli->query($sql);  
+                while ($fila = mysqli_fetch_array($rsl)) {
+            ?>
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <figure>
                         <div class="imageheight">
-                            <img src="img/branding.png" alt="Branding">
+                            <img src="<?php echo $fila["img_service"];?>" alt=".">
                         </div>
                         <figcaption>
-                            <h3>Branding</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
+                            <h3><?php echo $fila["service"];?></h3>
+                            <p><?php echo $fila["service_desc"];?></p>
                         </figcaption>
                     </figure>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <figure>
-                        <div class="imageheight">
-                            <img src="img/design.png" alt="Design">
-                        </div>
-                        <figcaption>
-                            <h3>Design</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <figure>
-                        <div class="imageheight">
-                            <img src="img/development.png" alt="Development">
-                        </div>
-                        <figcaption>
-                            <h3>Development</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <figure>
-                        <div class="imageheight">
-                            <img src="img/rocket.png" alt="Rocket Science">
-                        </div>
-                        <figcaption>
-                            <h3>Rocket Science</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh.</p>
-                        </figcaption>
-                    </figure>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </section>
@@ -128,7 +103,7 @@
             <h1>MEET OUR BEAUTIFUL TEAM
                 <hr>
             </h1>
-
+                     
             <!-- Texto que esta en el medio -->
             <p>We are a small team of designers and developers, who help brands with big ideas.</p>
 
@@ -230,30 +205,42 @@
 
 
     <!--SKILL-->
+    <?php
+    global $mysqli;
+    $sql = "SELECT titulo, subtitulo FROM skills LIMIT 1";
+    $rsl = $mysqli->query($sql);  
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>
     <section class="wrapper" id="skill">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2>WE GOT SKILLS!</h2>
+                    <h2><?php echo $fila["titulo"];?></h2>
                     <div class="bottomline"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <p><?php echo $fila["subtitulo"];?></p>
                 </div>
             </div>
+    <?php }?>
             <div class="row">
                 <!--Loader-->
+                <?php
+                global $mysqli;
+                $sql = "SELECT skill, skill_percentage, loader, color FROM skills LIMIT 4";
+                $rsl = $mysqli->query($sql);  
+                while ($fila = mysqli_fetch_array($rsl)) {
+                ?>
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <div>
                         <div class="clearfix">
-                            <canvas class="loader"></canvas>
+                            <canvas class="<?php echo $fila["loader"];?>"></canvas>
                             <script>
                                 $(document).ready(function () {
-                                    $('.loader').ClassyLoader({
-                                        percentage: 90,
+                                    $('.<?php echo $fila["loader"];?>').ClassyLoader({
+                                        percentage: <?php echo $fila["skill_percentage"];?>,
                                         speed: 20,
                                         fontSize: '40px',
                                         diameter: 80,
-                                        lineColor: 'rgba(48,186,231,1)',
+                                        lineColor: '<?php echo $fila["color"];?>',
                                         remainingLineColor: 'rgba(223,232,237,0.4)',
                                         lineWidth: 12
                                     });
@@ -261,141 +248,81 @@
                             </script>
 
                         </div>
-                        <span>Web Design</span>
+                        <span><?php echo $fila["skill"];?></span>
                     </div>
                 </div>
-                <!--Loader 1-->
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div>
-                        <div class="clearfix">
-                            <canvas class="loader1"></canvas>
-                            <script>
-                                $(document).ready(function () {
-                                    $('.loader1').ClassyLoader({
-                                        percentage: 75,
-                                        speed: 20,
-                                        fontSize: '40px',
-                                        diameter: 80,
-                                        lineColor: 'rgba(215,70,128,1)',
-                                        remainingLineColor: 'rgba(223,232,237,0.4)',
-                                        lineWidth: 12
-                                    });
-                                });
-                            </script>
-                        </div>
-                        <span>HTML/CSS</span>
-                    </div>
-                </div>
-                <!--Loader 2-->
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div>
-                        <div class="clearfix">
-                            <canvas class="loader2"></canvas>
-                            <script>
-                                $(document).ready(function () {
-                                    $('.loader2').ClassyLoader({
-                                        percentage: 70,
-                                        speed: 20,
-                                        fontSize: '40px',
-                                        diameter: 80,
-                                        lineColor: 'rgba(21,199,168,1)',
-                                        remainingLineColor: 'rgba(223,232,237,0.4)',
-                                        lineWidth: 12
-                                    });
-                                });
-                            </script>
-                        </div>
-                        <span>GRAPHIC DESIGN</span>
-                    </div>
-                </div>
-                <!--Loader 3-->
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <div>
-                        <div class="clearfix">
-                            <canvas class="loader3"></canvas>
-                            <script>
-                                $(document).ready(function () {
-                                    $('.loader3').ClassyLoader({
-                                        percentage: 85,
-                                        speed: 20,
-                                        fontSize: '40px',
-                                        diameter: 80,
-                                        lineColor: 'rgba(235,125,75,1)',
-                                        remainingLineColor: 'rgba(223,232,237,0.4)',
-                                        lineWidth: 12
-                                    });
-                                });
-                            </script>
-                        </div>
-                        <span>UI/UX</span>
-                    </div>
-                </div>
+                <?php }?>
             </div>
         </div>
     </section>
 
     <!--Portafolio-->
-    
 
-<section class="wrapper" id="portafolio"> 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2 class=>OUR PORTFOLIO</h2>
-                <div class="bottomline"></div>
-                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam</p>
+
+    <section class="wrapper" id="portafolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h2 class=>OUR PORTFOLIO</h2>
+                    <div class="bottomline"></div>
+                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed
+                        quia non numquam</p>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.9s">
+                        <ul id="portafolio-filter">
+                            <li><a href="#all" title="">All</a></li>
+                            <li><a href="#web" title="" rel="web">WEB</a></li>
+                            <li><a href="#apps" title="" rel="apps">APPS</a></li>
+                            <li><a href="#icons" title="" rel="icons">ICONS</a></li>
+                        </ul>
+
+                        <ul id="portafolio-lista" class="clearfix">
+                            <li style="display: block;" class="web icons">
+                                <a href="#"><img src="img/port1.png" alt=""></a>
+                                <p>
+                                    Isometric Perspective Mock-Up
+                                </p>
+                            </li>
+                            <li style="display: block;" class="apps">
+                                <a href="#"><img src="img/port2.png" alt=""></a>
+                                <p>
+                                    Time Zone App UI
+                                </p>
+                            </li>
+                            <li class="apps icons">
+                                <a href="#"><img src="img/port3.png" alt=""></a>
+                                <p>
+                                    Viro Media Players UI
+                                </p>
+                            </li>
+                            <li class="web icons">
+                                <a href="#" title=""><img src="img/port4.png" alt=""></a>
+                                <p>
+                                    Blog / Magazine Flat UI Kit
+                                </p>
+                            </li>
+
+
+                            <li
+                                style="overflow: hidden; clear: both; height: 0px; position: relative; float: none; display: block;">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <a class="os-animation btn1 btn-21 btn-2a1">
+                        <font color="white">LOAD MORE PROJECT</font>
+                    </a>
+
+                </div>
             </div>
         </div>
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="os-animation" data-os-animation="fadeIn" data-os-animation-delay="0.9s"> 
-                <ul id="portafolio-filter">
-                    <li><a href="#all" title="">All</a></li>
-                    <li><a href="#web" title="" rel="web">WEB</a></li>
-                    <li><a href="#apps" title="" rel="apps">APPS</a></li>
-                    <li><a href="#icons" title="" rel="icons">ICONS</a></li>
-                </ul>
-        
-                <ul id="portafolio-lista" class="clearfix">
-                                <li style="display: block;" class="web icons">
-                                        <a href="#"><img src="img/port1.png" alt=""></a>
-                                    <p>
-                                        Isometric Perspective Mock-Up
-                                    </p>
-                                </li>
-                                <li style="display: block;" class="apps">
-                                        <a href="#"><img src="img/port2.png" alt=""></a>
-                                    <p>
-                                        Time Zone App UI
-                                    </p>
-                                </li>
-                                <li class="apps icons">
-                                        <a href="#"><img src="img/port3.png" alt=""></a>
-                                    <p>
-                                        Viro Media Players UI
-                                    </p>
-                                </li>
-                                <li class="web icons">
-                                        <a href="#" title=""><img src="img/port4.png" alt=""></a>
-                                    <p>
-                                        Blog / Magazine Flat UI Kit
-                                    </p>
-                                </li>
-                            
-                    
-                        <li style="overflow: hidden; clear: both; height: 0px; position: relative; float: none; display: block;"></li>
-                </ul>
-              </div>  
-            </div>
-         </div> 
-         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12"> 
-             <a class="os-animation btn1 btn-21 btn-2a1"><font color="white">LOAD MORE PROJECT</font></a>
-             
-        </div>
-     </div>
-  </div>
-</section>  
+    </section>
 
 
 
@@ -536,10 +463,10 @@
             </div>
         </div>
     </footer>
-<script src="js/fastclick.js"></script>
-<script src="js/scroll.js"></script>
-<script src="js/fixed-responsive-nav.js"></script>
-   
+    <script src="js/fastclick.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/fixed-responsive-nav.js"></script>
+
 </body>
 
 </html>
