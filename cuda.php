@@ -10,12 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!--ESTILOS-->
     <link rel="stylesheet" href="css/estilos.css">
-
     <!--Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
-
- 
-
     <!--MOBILE VIEW-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--FONTS-->

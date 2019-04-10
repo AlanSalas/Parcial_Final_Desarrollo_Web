@@ -39,7 +39,7 @@
         <div class="btn-toolbar mb-2 mb-md-0">
               <div class= "btn-group mr-2">  
                          <form action="" enctype="form-data" id="form_data">               
-                <button type="button" class="btn btn-sm btn-outline-success" id="guardar_datos" ">Guardar</button>
+                <button type="button" class="btn btn-sm btn-outline-success" id="guardar_datos">Guardar</button>
           </div>
         </div>
       </div>
@@ -71,11 +71,10 @@
         </div>
                 </main>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
 <script>
-
 $(function updateHeader(){
   $("#guardar_datos").click(function(){
    let titulo = $("#tituloHeader").val();
@@ -89,7 +88,6 @@ $(function updateHeader(){
     "boton" : boton,
     "link" : link
    }
-
    $("#form_data").find("input").each(function(r){
     $(this).removeClass("has-error");
    if ($(this).val() != "") {
@@ -98,41 +96,29 @@ $(function updateHeader(){
     $(this).addClass("has-error").focus();
     return false;
    }
-
   });
-
    $.post('includes/_funciones.php', obj, function(i) {
-
     if (i == "1") {
        $("#infoSH").html("Actualizado Correctamente").show().delay(2000).fadeOut(400);
        consultarHeader();
-
      } else {
        $("#infoDH").html("Error al Actualizar").show().delay(2000).fadeOut(400);
       
      }
-
-   });
-
    });
    });
-
+   });
 $(function consultarHeader(){
-
     let obj = {
       "accion" : "consultar_header"
     };
-
     $.post('includes/_funciones.php', obj, function(r){
-
-    $("#tituloHeader").val(r.title_header);
-    $("#textoHeader").val(r.content_header);
-    $("#botonHeader").val(r.link_header);
-    $("#linkHeader").val(r.href_header);
+    $("#tituloHeader").val(r.header_title);
+    $("#textoHeader").val(r.header_content);
+    $("#botonHeader").val(r.header_link);
+    $("#linkHeader").val(r.header_href);
     }, "JSON");
-
    });
-
 </script>
 </body>
 </html>

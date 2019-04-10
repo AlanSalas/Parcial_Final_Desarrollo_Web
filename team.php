@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  error_reporting(0);
+  $varsesion = $_SESSION['usuario'];
+
+  if (isset($varsesion)){
+?>
+
+
 <!Doctype html>
 <html lang="en">
 
@@ -62,9 +71,7 @@
                   <input type="file" id="foto" name="foto">
                   <input type="hidden" id="ruta" name="ruta" readonly="readonly">
                 </div>
-                <div>
                  <div id="preview"></div>
-                </div>
                 <div class="form-group">
                   <label for="nombre"><b>Nombre</b></label>
                   <input type="text" id="nombre" name="nombre" class="form-control">
@@ -110,7 +117,7 @@
         $.each(respuesta,function(i,e){
           template += `
           <tr>
-          <td>${e.team_img}</td>
+          <td><img src="${e.team_img}" class="img-thumbnail" width="100" height="100"/></td>
           <td>${e.team_name}</td>
           <td>${e.team_position}</td>
           <td>${e.team_description}</td>
@@ -128,9 +135,14 @@
       consultar();
       change_view();
     });
-    $("#nuevo_registro").click(function(){
-      change_view('insert_data');
-    });
+        $("#nuevo_registro").click(function () {
+            change_view('insert_data');
+            $("#h2-title").text("Insertar Team");
+            $("#guardar_datos").text("Guardar").data("editar", 0);
+            $("#preview").html("");
+            $('#ruta').attr('value', '');
+            $("#form_data")[0].reset();
+        });
     $("#guardar_datos").click(function(respuesta){
       let imagen = $("#ruta").val();
       let nombre = $("#nombre").val();
@@ -162,6 +174,7 @@
       $.post("includes/_funciones.php", obj, function(verificado){ 
       
        alert(verificado);
+       location.reload();
      }
      );
     });
@@ -219,7 +232,12 @@
        };
           $("#guardar_datos").text("Editar").data("editar", 1).data("id", id);
           $.post("includes/_funciones.php",obj,function(r){
-            $("#ruta").val(r.team_img);
+                let template =
+                    `
+                    <img src="${r.team_img}" class="img-thumbnail" width="200" height="200"/>
+                    `;
+                $("#ruta").val(r.team_img);
+                $("#preview").html(template);
             $("#nombre").val(r.team_name);
             $("#cargo").val(r.team_position);
             $("#descripcion").val(r.team_description);
@@ -229,11 +247,28 @@
      
 
 
-    $("#main").find(".cancelar").click(function(){
-      change_view();
-      $("#form_data")[0].reset();
-    });
+        $("#main").find(".cancelar").click(function () {
+            change_view();
+            $("#form_data")[0].reset();
+            $("#form_data").find("input").each(function () {
+                $(this).removeClass("has-error");
+            });
+            $("#error").hide();
+            $("#success").hide();
+            $("#h2-title").text("Consultar Services");
+            $("#preview").html("");
+            if ($("#guardar_datos").data("editar") == 1) {
+                $("#guardar_datos").text("Guardar").data("editar", 0);
+                consultar();
+            }
+        });
   </script>
   <img src"">
 </body>
 </html>
+
+<?php
+  }else{
+    header("Location:index.php");
+  }
+?>

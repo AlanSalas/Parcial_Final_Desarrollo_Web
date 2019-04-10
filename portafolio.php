@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Usuarios</title>
+    <title>Portafolio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/template-admin.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/unid-ico.ico">
@@ -131,8 +131,8 @@
           <td><img src="${e.img_port}" class="img-thumbnail" width="100" height="100"/></td>
            <td>${e.descri_img}</td>
           <td>
-          <a href="#" data-id="${e.id_us}" class="editar_portafolio">Editar</a>
-          <a href="#" data-id="${e.id_us}" class="eliminar_portafolio">Eliminar</a>
+          <a href="#" data-id="${e.id_port}" class="editar_portafolio">Editar</a>
+          <a href="#" data-id="${e.id_port}" class="eliminar_portafolio">Eliminar</a>
           </td>
           </tr>
           `;
@@ -153,8 +153,8 @@
         $("#guardar_datos").click(function () {
             let titulo = $("#inputTitulo").val();
             let subtitulo = $("#inputSubtitulo").val();
-            let descripcion = $("#inputDescripcion").val();
             let img_port = $('#ruta').val();
+            let descri_img = $("#inputDescripcion").val();
             let obj = {
                 "accion": "insertar_portafolio",
                 "titulo": titulo,
@@ -224,11 +224,12 @@
             $("#h2-title").text("Editar Portafolio");
             $("#guardar_datos").text("Editar").data("editar", 1).data("id", id);
             $.post("includes/_funciones.php", obj, function (r) {
-                $("#inputNombre").val(r.nombre_usr);
-                $("#inputCorreo").val(r.correo_usr);
+                $("#inputTitulo").val(r.titulo);
+                $("#inputSubtitulo").val(r.subtitulo);
+                $("inputDescripcion").val(r.descri_img)
                 let template =
                     `
-                    <img src="${r.foto_usr}" class="img-thumbnail" width="200" height="200"/>
+                    <img src="${r.img_port}" class="img-thumbnail" width="200" height="200"/>
                     `;
                 $("#ruta").val(r.img_port);
                 $("#preview").html(template);
