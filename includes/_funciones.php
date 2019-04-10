@@ -560,11 +560,7 @@ require_once("con_db.php");
 		}elseif (empty($imagen)) {
 			echo "7";
 		}else{
-
-			$sql = "INSERT INTO about VALUES('', '$titulo_us', '$subtitulo_us', '$descripcion_us', '$nombre_us', '$cargo_us', '$img_us')";
-
 			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$imagen')";
-
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
