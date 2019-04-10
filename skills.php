@@ -57,6 +57,8 @@
                                 <th>Subtitulo</th>
                                 <th>Skill</th>
                                 <th>Porcentaje</th>
+                                <th>Loader</th>
+                                <th>Color</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -81,9 +83,29 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="parcentaje">Porcentaje %</label>
-                                    <input type="range" id = "inputPorcentaje" name="porcentaje" min="0" max="100" value="50" step="1" onchange="rangevalue.value=value" class="form-control-range"/>
+                                    <input type="range" id = "inputPorcentaje" name="porcentaje" min="0" max="100" value="" step="1" onchange="rangevalue.value=value" class="form-control-range"/>
                                     <output id="rangevalue"></output>
                                 </div>
+                                <div class="form-group">
+                                    <label for="loader">Loader</label>
+                                    <select name="loader" id="loader" class="custom-select">
+                                    <option value="">Selecciona un numero de loader:</option>
+                                    <option value="loader">Loader</option>
+                                    <option value="loader1">Loader 1</option>
+                                    <option value="loader2">Loader 2</option>
+                                    <option value="loader3">Loader 3</option>
+                                    </select>
+                                </div>  
+                                <div class="form-group">
+                                    <label for="color">Color</label>
+                                    <select name="color" id="color" class="custom-select">
+                                    <option value="">Selecciona un color:</option>
+                                    <option value="rgba(48,186,231,1)">Azul</option>
+                                    <option value="rgba(215,70,128,1)">Rosa</option>
+                                    <option value="rgba(21,199,168,1)">Verde</option>
+                                    <option value="rgba(235,125,75,1)">Naranja</option>
+                                    </select>
+                                </div>                              
                             </div>
                         </div>
                         <div class="row">
@@ -130,6 +152,8 @@
           <td>${e.subtitulo}</td>
           <td>${e.skill}</td>
           <td>${e.skill_percentage}%</td>
+          <td>${e.loader}</td>
+          <td>${e.color}</td>
           <td>
           <a href="#" data-id="${e.id_skill}" class="editar_skill">Editar</a>
           <a href="#" data-id="${e.id_skill}" class="eliminar_skill">Eliminar</a>
@@ -146,6 +170,7 @@
             $("#h2-title").text("Insertar Skill");
             $("#guardar_datos").text("Guardar").data("editar", 0);
             $("#preview").html("");
+            $("#rangevalue").html("");
             $('#ruta').attr('value', '');
             $("#form_data")[0].reset();
         });
@@ -155,12 +180,16 @@
             let subtitulo = $("#inputSubtitle").val();
             let skill = $("#inputSkill").val();
             let porcentaje = $("#inputPorcentaje").val();
+            let loader = $("#loader").val();
+            let color = $("#color").val();
             let obj = {
                 "accion": "insertar_skills",
                 "titulo": titulo,
                 "subtitulo": subtitulo,
                 "skill" : skill,
-                "porcentaje": porcentaje
+                "porcentaje": porcentaje,
+                "loader": loader,
+                "color": color
             }
             $("#form_data").find("input").each(function () {
                 $(this).removeClass("has-error");
@@ -203,6 +232,10 @@
                     alert("Se produjo en error, intente nuevamente");
                     location.reload();                    
                 }
+                if (v == 8) {
+                    alert("Este loader no está disponible, por favor elimine uno o editelo");
+                    location.reload();                    
+                }
             });
         });
         //FUNCION PARA ELIMINAR 1 REGISTRO EN LA BD
@@ -240,6 +273,13 @@
                 $("#inputSubtitle").val(r.subtitulo);
                 $("#inputSkill").val(r.skill);
                 $("#inputPorcentaje").val(r.skill_percentage);
+                let template =
+                    `
+                    <output id="rangevalue">${r.skill_percentage}</output>
+                    `;
+                $("#rangevalue").html(template);
+                $("#loader").val(r.loader);
+                $("#color").val(r.color);
             }, "JSON");
         });
         //FUNCION DESHABILITAR ATRAS EN EL NAVEGADOR

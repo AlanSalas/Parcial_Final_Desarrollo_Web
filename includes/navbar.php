@@ -53,7 +53,13 @@
                 <a class="nav-link" href="contacto.php" id="contacto">
                     Contacto
                 </a>
+            </li>
 
+            <!--FRONTEND-->
+            <li class="nav-item">
+                <a class="nav-link" href="cuda.php" id="cuda">
+                    Display Cuda
+                </a>
             </li>
            </ul>
         </ul>

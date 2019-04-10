@@ -439,21 +439,32 @@ require_once("con_db.php");
 		$subtitulo = $_POST['subtitulo'];
 		$skill = $_POST['skill'];
 		$porcentaje = $_POST['porcentaje'];
+		$loader = $_POST['loader'];
+		$color = $_POST['color'];
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje) && empty($loader) && empty($color)) {
 			echo "0";
-		}elseif (empty($titulo)) {
-			echo "2";
-		}elseif (empty($subtitulo)) {
-			echo "3";
-		}elseif (empty($skill)) {
-			echo "4";
-		}elseif (empty($porcentaje)) {
-			echo "5";
 		}else{
-			$sql = "INSERT INTO skills VALUES('', '$titulo', '$subtitulo', '$skill', '$porcentaje')";
+			$sql = "SELECT * FROM skills WHERE loader = '$loader'";
 			$rsl = $mysqli->query($sql);
-			echo "1";
+			$row = $rsl->fetch_assoc();
+			if ($row) {
+				echo "8";
+			}else{
+				if (empty($titulo)) {
+					echo "2";
+				}elseif (empty($subtitulo)) {
+					echo "3";
+				}elseif (empty($skill)) {
+					echo "4";
+				}elseif (empty($porcentaje)) {
+					echo "5";
+				}else{
+					$sql = "INSERT INTO skills VALUES('', '$titulo', '$subtitulo', '$skill', '$porcentaje', '$loader', '$color')";
+					$rsl = $mysqli->query($sql);
+					echo "1";
+				}
+			}
 		}
 	}
 	//------------------------------FUNCION PARA ELIMINAR SKILLS-----------------------------//
@@ -480,23 +491,32 @@ require_once("con_db.php");
 		global $mysqli;
 		extract($_POST);
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje)) {
+		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje) && empty($loader) && empty($color)) {
 			echo "0";
-		}elseif (empty($titulo)) {
-			echo "2";
-		}elseif (empty($subtitulo)) {
-			echo "3";
-		}elseif (empty($skill)) {
-			echo "4";
-		}elseif (empty($porcentaje)) {
-			echo "5";
 		}else{
-			$sql = "UPDATE skills SET titulo = '$titulo', subtitulo = '$subtitulo', skill = '$skill', skill_percentage = '$porcentaje' WHERE id_skill = '$id'";
+			$sql = "SELECT * FROM skills WHERE loader = '$loader'";
 			$rsl = $mysqli->query($sql);
-			if ($rsl) {
-				echo "6";
+			$row = $rsl->fetch_assoc();
+			if ($row) {
+				echo "8";
 			}else{
-				echo "7";
+				if (empty($titulo)) {
+					echo "2";
+				}elseif (empty($subtitulo)) {
+					echo "3";
+				}elseif (empty($skill)) {
+					echo "4";
+				}elseif (empty($porcentaje)) {
+					echo "5";
+				}else{
+					$sql = "UPDATE skills SET titulo = '$titulo', subtitulo = '$subtitulo', skill = '$skill', skill_percentage = '$porcentaje', loader = '$loader', color = '$color' WHERE id_skill = '$id'";
+					$rsl = $mysqli->query($sql);
+					if ($rsl) {
+						echo "6";
+					}else{
+						echo "7";
+					}
+				}
 			}
 		}
 	}
@@ -684,22 +704,21 @@ function eliminar_team($id){
 		global $mysqli;
 		$titulo = $_POST['titulo'];
 		$subtitulo = $_POST['subtitulo'];
-		$imagen = $_POST['img_port'];
+		$imagen = $_POST['img'];
 		$descripcion = $_POST['descri_img'];
-		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($imagen)&& empty($descripcion)) {
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)) {
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($imagen)) {
+		}elseif (empty($img)) {
 			echo "4";
 		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen' 1,'$descripcion')";
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img','$descripcion')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -721,24 +740,26 @@ function eliminar_team($id){
 		extract($_POST);
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descri_img)&& empty($img_port)){
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)){
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($img_port)) {
+		}elseif (empty($img)) {
 			echo "10";
 		}elseif (empty($descri_img)) {
 			echo "5";
 		}else{
-			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$imagen', descripcion = '$descri_img'
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$img', descri_img = '$descri_img'
 			WHERE id_port = '$id'";
 			$rsl = $mysqli->query($sql);
 			if ($rsl) {
 				echo "8";
 			}else{
 				echo "9";
+			
+			
 			}
 		}
 	}
