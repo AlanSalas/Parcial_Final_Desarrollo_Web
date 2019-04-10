@@ -704,7 +704,7 @@ function eliminar_team($id){
 		global $mysqli;
 		$titulo = $_POST['titulo'];
 		$subtitulo = $_POST['subtitulo'];
-		$imagen = $_POST['img'];
+		$img = $_POST['img'];
 		$descripcion = $_POST['descri_img'];
 		//Validacion de campos vacios
 		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)) {
@@ -738,7 +738,6 @@ function eliminar_team($id){
 	function editar_portafolio(){
 		global $mysqli;
 		extract($_POST);
-		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
 		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)){
 			echo "0";
@@ -747,7 +746,7 @@ function eliminar_team($id){
 		}elseif (empty($subtitulo)) {
 			echo "3";
 		}elseif (empty($img)) {
-			echo "10";
+			echo "4";
 		}elseif (empty($descri_img)) {
 			echo "5";
 		}else{
@@ -757,9 +756,7 @@ function eliminar_team($id){
 			if ($rsl) {
 				echo "8";
 			}else{
-				echo "9";
-			
-			
+				echo "9";			
 			}
 		}
 	}
