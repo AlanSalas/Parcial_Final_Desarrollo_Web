@@ -10,12 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!--ESTILOS-->
     <link rel="stylesheet" href="css/estilos.css">
-
     <!--Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
-
- 
-
     <!--MOBILE VIEW-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!--FONTS-->
@@ -57,13 +53,10 @@
             <p>WORK WITH US!</p>
         </div>
     </div>
-
-
     <?php
     global $mysqli;
     $sql = "SELECT titulo, subtitulo FROM services LIMIT 1";
-    $rsl = $mysqli->query($sql);
-    
+    $rsl = $mysqli->query($sql);  
     while ($fila = mysqli_fetch_array($rsl)) {
     ?>
     <!--SERVICES-->
@@ -72,7 +65,6 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h2><?php echo $fila["titulo"];?></h2>
-    
                     <div class="bottomline"></div>
                     <p><?php echo $fila["subtitulo"];?></p>
         <?php } ?>

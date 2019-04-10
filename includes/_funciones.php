@@ -300,12 +300,17 @@ require_once("con_db.php");
 	//------------------------------FUNCIONES MODULO HEADER------------------------------//
 	//------------------------------CONSULTAR-----------------------------//
 	function consultar_header(){
- 	global $db;
- 	$query = "SELECT * FROM proye145_cuda_dweb.header";
-	$stmt = $db->prepare($query);
-	$stmt->execute();
-	$fila = $stmt->fetch(PDO::FETCH_ASSOC);
-	echo json_encode($fila);
+ // 	global $db;
+ // 	$query = "SELECT * FROM proye145_cuda_dweb.header";
+	// $stmt = $db->prepare($query);
+	// $stmt->execute();
+	// $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+	// echo json_encode($fila);
+		global $mysqli;
+		$query = "SELECT * FROM header";
+		$respuesta = $mysqli->query($query);
+		$fila = mysqli_fetch_array($respuesta);
+		echo json_encode($fila); //Imprime Json encodeado	
 	}
 	//------------------------------ACTUALIZAR-----------------------------//
 	function update_header(){
@@ -313,6 +318,7 @@ require_once("con_db.php");
 	$texto= $_POST["texto"];
 	$boton = $_POST["boton"];
 	$link = $_POST["link"];
+	// $id = $_POST['id'];
  	global $db;
  	$stmt = $db->prepare("UPDATE proye145_cuda_dweb.header SET header_title =?, header_content =?, header_link =?, header_href =? WHERE header_id = 1");
  	$stmt->execute(array($titulo, $texto, $boton, $link));
@@ -534,7 +540,11 @@ require_once("con_db.php");
 		}elseif (empty($imagen)) {
 			echo "7";
 		}else{
+
+			$sql = "INSERT INTO about VALUES('', '$titulo_us', '$subtitulo_us', '$descripcion_us', '$nombre_us', '$cargo_us', '$img_us')";
+
 			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$imagen')";
+
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -588,6 +598,7 @@ require_once("con_db.php");
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
 	}
+
 	//------------------------------FUNCIONES MODULO TEAM------------------------------//
 
 	function consultar_team(){
