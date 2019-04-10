@@ -80,6 +80,7 @@
                                     <input type="file" name="foto" id="foto">
                                     <input type="hidden" name="ruta" id="ruta" readonly="readonly">
                                 </div>
+                                <div id="preview"></div>
                                 <div class="form-group">
                                     <label for="nombre">Descripcion Imagen</label>
                                     <input type="text" id="inputDescripcion" name="descripcion" class="form-control">
@@ -153,13 +154,13 @@
         $("#guardar_datos").click(function () {
             let titulo = $("#inputTitulo").val();
             let subtitulo = $("#inputSubtitulo").val();
-            let img = $('#ruta').val();
+            let img = $("#ruta").val();
             let descri_img = $("#inputDescripcion").val();
             let obj = {
                 "accion": "insertar_portafolio",
                 "titulo": titulo,
                 "subtitulo": subtitulo,
-                "img":img,
+                "img": img,
                 "descri_img": descri_img
             }
             $("#form_data").find("input").each(function () {
@@ -179,6 +180,10 @@
                 if (v == 0) {
                     $("#error").html("Campos vacios").fadeIn();
                 }
+                if (v == 1) {
+                    alert("Portafolio insertado");
+                    location.reload();
+                }
                 if (v == 2) {
                     $("#error").html(" Ingresar un Titulo").fadeIn();
                 }
@@ -187,6 +192,14 @@
                 }
                 if (v == 5) {
                     $("#error").html("Ingresar una Descripcion").fadeIn();
+                }
+                if (v == 8) {
+                    alert("Portafolio editado");
+                    location.reload();
+                }
+                if (v == 1) {
+                    alert("Ocurrio un error, intente nuevamente");
+                    location.reload();
                 }
                 if (v == 10) {
                     $("#error").html("Ingresar una foto").fadeIn();
@@ -226,14 +239,13 @@
             $.post("includes/_funciones.php", obj, function (r) {
                 $("#inputTitulo").val(r.titulo);
                 $("#inputSubtitulo").val(r.subtitulo);
-                $("inputDescripcion").val(r.descri_img)
                 let template =
                     `
                     <img src="${r.img_port}" class="img-thumbnail" width="200" height="200"/>
                     `;
                 $("#ruta").val(r.img_port);
                 $("#preview").html(template);
-                
+                $("#inputDescripcion").val(r.descri_img);
             }, "JSON");
         });
         //FUNCION DESHABILITAR ATRAS EN EL NAVEGADOR

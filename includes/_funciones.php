@@ -704,9 +704,8 @@ function eliminar_team($id){
 		global $mysqli;
 		$titulo = $_POST['titulo'];
 		$subtitulo = $_POST['subtitulo'];
-		$imagen = $_POST['foto'];
+		$imagen = $_POST['img'];
 		$descripcion = $_POST['descri_img'];
-		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
 		if (empty($titulo) && empty($subtitulo) && empty($imagen)&& empty($descripcion)) {
 			echo "0";
@@ -747,12 +746,12 @@ function eliminar_team($id){
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($img_port)) {
+		}elseif (empty($img)) {
 			echo "10";
 		}elseif (empty($descri_img)) {
 			echo "5";
 		}else{
-			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$imagen', descri_img = '$descripcion'
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$img', descri_img = '$descri_img'
 			WHERE id_port = '$id'";
 			$rsl = $mysqli->query($sql);
 			if ($rsl) {
