@@ -179,18 +179,30 @@
                 if (v == 0) {
                     $("#error").html("Campos vacios").fadeIn();
                 }
+                 if (v == 1) {
+                    alert("Portafolio insertado");
+                    location.reload();
+                }
                 if (v == 2) {
                     $("#error").html(" Ingresar un Titulo").fadeIn();
                 }
                 if (v == 3) {
                     $("#error").html("Ingresar un Subtitulo").fadeIn();
                 }
+                if (v == 4) {
+                    $("#error").html("Ingresar una Foto").fadeIn();
+                }
                 if (v == 5) {
                     $("#error").html("Ingresar una Descripcion").fadeIn();
                 }
-                if (v == 10) {
-                    $("#error").html("Ingresar una foto").fadeIn();
+                if (v == 6) {
+                    alert("Portafolio editado");
+                    location.reload();
                 }
+                // if (v == 9) {
+                    //                    
+                //
+               
             });
         });
         //FUNCION PARA ELIMINAR 1 REGISTRO EN LA BD

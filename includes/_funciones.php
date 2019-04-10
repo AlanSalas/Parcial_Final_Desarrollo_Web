@@ -684,22 +684,22 @@ function eliminar_team($id){
 		global $mysqli;
 		$titulo = $_POST['titulo'];
 		$subtitulo = $_POST['subtitulo'];
-		$imagen = $_POST['foto'];
+		$img = $_POST['foto'];
 		$descripcion = $_POST['descri_img'];
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($imagen)&& empty($descripcion)) {
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)) {
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($imagen)) {
+		}elseif (empty($img)) {
 			echo "4";
 		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen','$descripcion')";
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img','$descripcion')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -721,24 +721,26 @@ function eliminar_team($id){
 		extract($_POST);
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descri_img)&& empty($img_port)){
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)){
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($img_port)) {
-			echo "10";
-		}elseif (empty($descri_img)) {
+		}elseif (empty($img)) {
+			echo "4";
+		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img_port = '$imagen', descri_img = '$descripcion'
+			$sql = "UPDATE portafolio SET titulo = '$titulo', subtitulo = '$subtitulo', img = '$img', descripcion= '$descripcion'
 			WHERE id_port = '$id'";
 			$rsl = $mysqli->query($sql);
 			if ($rsl) {
 				echo "8";
 			}else{
 				echo "9";
+			
+			
 			}
 		}
 	}
