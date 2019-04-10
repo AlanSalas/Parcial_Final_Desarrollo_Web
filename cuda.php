@@ -57,13 +57,10 @@
             <p>WORK WITH US!</p>
         </div>
     </div>
-
-
     <?php
     global $mysqli;
     $sql = "SELECT titulo, subtitulo FROM services LIMIT 1";
-    $rsl = $mysqli->query($sql);
-    
+    $rsl = $mysqli->query($sql);  
     while ($fila = mysqli_fetch_array($rsl)) {
     ?>
     <!--SERVICES-->
@@ -72,7 +69,6 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <h2><?php echo $fila["titulo"];?></h2>
-    
                     <div class="bottomline"></div>
                     <p><?php echo $fila["subtitulo"];?></p>
         <?php } ?>

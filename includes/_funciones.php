@@ -539,7 +539,7 @@ require_once("con_db.php");
 		}elseif (empty($imagen)) {
 			echo "7";
 		}else{
-			$sql = "INSERT INTO about VALUES('', '$titulo', '$subtitulo', '$descripcion', '$nombre', '$cargo', '$img_us')";
+			$sql = "INSERT INTO about VALUES('', '$titulo_us', '$subtitulo_us', '$descripcion_us', '$nombre_us', '$cargo_us', '$img_us')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -593,6 +593,7 @@ require_once("con_db.php");
 		$fila = mysqli_fetch_array($rsl);
 		echo json_encode($fila); //Imprime Json encodeado	
 	}
+
 	//------------------------------FUNCIONES MODULO TEAM------------------------------//
 
 	function consultar_team(){
