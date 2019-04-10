@@ -153,13 +153,13 @@
         $("#guardar_datos").click(function () {
             let titulo = $("#inputTitulo").val();
             let subtitulo = $("#inputSubtitulo").val();
-            let img_port = $('#ruta').val();
+            let img = $('#ruta').val();
             let descri_img = $("#inputDescripcion").val();
             let obj = {
                 "accion": "insertar_portafolio",
                 "titulo": titulo,
                 "subtitulo": subtitulo,
-                 "img_port": img_port,
+                "img":img,
                 "descri_img": descri_img
             }
             $("#form_data").find("input").each(function () {
