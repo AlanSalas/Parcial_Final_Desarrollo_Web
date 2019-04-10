@@ -43,21 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="table-responsive view" id="show_data">
-          <table class="table table-striped table-sm" id="list_header">
-            <thead>
-              
-              <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Link</th>
-                <th>Href</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+
             <div class="row">
               <div class="col">
                 <div class="form-group">
@@ -85,11 +71,10 @@
         </div>
                 </main>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
 <script>
-
 $(function updateHeader(){
   $("#guardar_datos").click(function(){
    let titulo = $("#tituloHeader").val();
@@ -103,7 +88,6 @@ $(function updateHeader(){
     "boton" : boton,
     "link" : link
    }
-
    $("#form_data").find("input").each(function(r){
     $(this).removeClass("has-error");
    if ($(this).val() != "") {
@@ -112,67 +96,29 @@ $(function updateHeader(){
     $(this).addClass("has-error").focus();
     return false;
    }
-
   });
-
    $.post('includes/_funciones.php', obj, function(i) {
-
     if (i == "1") {
        $("#infoSH").html("Actualizado Correctamente").show().delay(2000).fadeOut(400);
        consultarHeader();
-
      } else {
        $("#infoDH").html("Error al Actualizar").show().delay(2000).fadeOut(400);
       
      }
-
-   });
-
    });
    });
-
+   });
 $(function consultarHeader(){
-
     let obj = {
       "accion" : "consultar_header"
     };
-
     $.post('includes/_funciones.php', obj, function(r){
-
-    // $("#tituloHeader").val(r.header_title);
-    // $("#textoHeader").val(r.header_content);
-    // $("#botonHeader").val(r.header_link);
-    // $("#linkHeader").val(r.header_href);
-    // }, "JSON");
-    let template = ``;
-    $.each(r,function(i,e){
-      template += `
-        <tr>
-          <td>${e.header_title}</td>
-          <td>${e.header_content}</td>
-          <td>${e.header_link}</td>
-          <td>${e.header_href}</td>
-          <td>
-            <a href="#" data-id="${e.header_id}" class="editar_header"></a>
-            <a href="#" data-id="${e.header_id}" class="eliminar_header"></a>
-          </td>
-        </tr>
-      `;
-    });
-    $("#list_header").html(template);  
-   }, "JSON");
-});
-
-
     $("#tituloHeader").val(r.header_title);
     $("#textoHeader").val(r.header_content);
     $("#botonHeader").val(r.header_link);
     $("#linkHeader").val(r.header_href);
     }, "JSON");
-
    });
-
-
 </script>
 </body>
 </html>
