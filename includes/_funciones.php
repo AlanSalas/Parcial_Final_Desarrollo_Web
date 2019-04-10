@@ -707,18 +707,18 @@ function eliminar_team($id){
 		$imagen = $_POST['img'];
 		$descripcion = $_POST['descri_img'];
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($imagen)&& empty($descripcion)) {
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)) {
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
 		}elseif (empty($subtitulo)) {
 			echo "3";
-		}elseif (empty($imagen)) {
+		}elseif (empty($img)) {
 			echo "4";
 		}elseif (empty($descripcion)) {
 			echo "5";
 		}else{
-			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$imagen','$descripcion')";
+			$sql = "INSERT INTO portafolio VALUES('', '$titulo', '$subtitulo','$img','$descripcion')";
 			$rsl = $mysqli->query($sql);
 			echo "1";
 		}
@@ -740,7 +740,7 @@ function eliminar_team($id){
 		extract($_POST);
 		$expresion = '/^[9|9|5][0-10]{8}$/';
 		//Validacion de campos vacios
-		if (empty($titulo) && empty($subtitulo) && empty($descri_img)&& empty($img_port)){
+		if (empty($titulo) && empty($subtitulo) && empty($img)&& empty($descripcion)){
 			echo "0";
 		}elseif (empty($titulo)) {
 			echo "2";
@@ -758,6 +758,8 @@ function eliminar_team($id){
 				echo "8";
 			}else{
 				echo "9";
+			
+			
 			}
 		}
 	}
