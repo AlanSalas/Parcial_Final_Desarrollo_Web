@@ -180,11 +180,7 @@
                 if (v == 0) {
                     $("#error").html("Campos vacios").fadeIn();
                 }
-<<<<<<< HEAD
                 if (v == 1) {
-=======
-                 if (v == 1) {
->>>>>>> 812b9a8cf77ed6c7fba75b12ae8e8d93d8ca827e
                     alert("Portafolio insertado");
                     location.reload();
                 }
@@ -200,7 +196,6 @@
                 if (v == 5) {
                     $("#error").html("Ingresar una Descripcion").fadeIn();
                 }
-<<<<<<< HEAD
                 if (v == 8) {
                     alert("Portafolio editado");
                     location.reload();
@@ -211,11 +206,6 @@
                 }
                 if (v == 10) {
                     $("#error").html("Ingresar una foto").fadeIn();
-=======
-                if (v == 6) {
-                    alert("Portafolio editado");
-                    location.reload();
->>>>>>> 812b9a8cf77ed6c7fba75b12ae8e8d93d8ca827e
                 }
                 // if (v == 9) {
                     //                    
