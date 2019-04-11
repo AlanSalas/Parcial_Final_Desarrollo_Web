@@ -373,14 +373,20 @@
     <section class="wrapper" id="contacto">
         <div class="container">
             <!--El encabezado dela parte de abajo-->
+           <?php
+    global $mysqli;
+    $sql = "SELECT titulo, subtitulo FROM contacto LIMIT 1";
+    $rsl = $mysqli->query($sql);  
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>
+    <section class="wrapper" id="contacto">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <h2>GET IN TOUCH</h2>
+                    <h2><?php echo $fila["titulo"];?></h2>
                     <div class="bottomline"></div>
-                    <!--boton lineal-->
-                    <p>1600 Pennsylvania Ave NW, Washington, DC 20500, United States of America. Tel: (202) 456-1111</p>
-                </div>
-            </div>
+                    <p><?php echo $fila["subtitulo"];?></p>
+                    <?php } ?>
             <div class="spacing">
                 <form>
                     <div class="nameemail">
