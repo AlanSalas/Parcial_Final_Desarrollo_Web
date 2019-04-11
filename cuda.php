@@ -9,7 +9,7 @@
     <!--BOOTSTRAP CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!--ESTILOS-->
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos_2.css">
     <!--Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
     <!--MOBILE VIEW-->
@@ -17,6 +17,7 @@
     <!--FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,400italic,600,700' rel='stylesheet'
         type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.js"></script>
@@ -29,30 +30,59 @@
 
     <!--MENÚ-->
 
-    <div id="div1">
-        <header>
-            <div id="logo">
-                <img src="img/logo.png">
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <img src="img/logo.png" alt="Logotipo " class="img-responsive" id="logotipo">   
             </div>
-
-            <div id="menu">
-                <ul>
-                    <li>HOME</li>
-                    <li>ABOUT</li>
-                    <li>WORK</li>
-                    <li>BOLG</li>
-                    <li>CONTACT</li>
+            <div id="button-movil">
+                <i class="fas fa-align-justify"></i>
+            </div>
+            <nav class="col-lg-7 offset-lg-2 menu-header-principal">
+                <div id="menu">
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">TEAM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SKILLS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">PORTFOLIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
                 </ul>
-            </div>
-        </header>
-        <!-- Texto que esta en el medio -->
-        <div id="div1-1">
-            <h1>Hi there! We are rhe new kids on the block <br> and bluid awesome websites and mobile apps.</h1>
-
-            <!-- Botón naranjado -->
-            <p>WORK WITH US!</p>
+            </nav>
+            <nav class="col-lg-7 offset-lg-2 menu-header-movil">
+                <div id="close-movil">
+                    <i class="fas fa-times"></i>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SERVICES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">TEAM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">SKILLS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">PORTFOLIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
+
+        <section>
+        <div class="container" id="download">
+             <div  class="download" align="center">
+            <div class="col-md-8 col-md-offset-2 text-center">
+    <?php
+    global $mysqli;
+    $sql = "SELECT header_title, header_link FROM header LIMIT 1";
+    $rsl = $mysqli->query($sql);  
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>  
+                <h1><?php echo $fila["header_title"];?></h1>
+            <p><?php echo $fila["header_link"];?></p>
+    <?php } ?>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    </header>
 
     <!--SERVICES-->
     <?php
@@ -96,114 +126,44 @@
 
 
     <!-- TEAM -->
-
-    <div id="div2">
-        <div id="div2-1">
-            <!-- Texto GIGANTE esta en el medio -->
-            <h1>MEET OUR BEAUTIFUL TEAM
-                <hr>
-            </h1>
-                     
-            <!-- Texto que esta en el medio -->
-            <p>We are a small team of designers and developers, who help brands with big ideas.</p>
-
+<section class="wrapper" id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h2>MEET OUR BEAUTIFUL TEAM</h2>
+                <div class="bottomline"></div>
+                <p">We are a small team of designers and developers, who help brands with big ideas.</p>         
+            </div>
         </div>
-        <!-- Integrantes con sus puestos de trabajos y caracteristicas -->
-        <div id="div2-2">
-            <ul>
-                <!-- Integrante -->
-
-                <li><img src="img/team.png"></li>
-                <li>
-                    <h3>ANNE HATHWAY</h3>
-                </li>
-                <li>
-                    <h4>CEO / Marketing Guru</h4>
-                </li>
-                <li>Lurem ipsum dolor sit amet,<br>consectetuer adipiscing eit,<br>sed diam nonummy nibh <br>euismod
-                    tincidunt ut laoreet<br>dolore magna.</li>
-                <ul class="iconos">
-                    <!-- Redes sociales -->
-                    <li><img src="img/facebook.png"></li>
-                    <li><img src="img/twitter.png"></li>
-                    <li><img src="img/linkedin.png"></li>
-                    <li><img src="img/correo.png"></li>
-                </ul>
-            </ul>
-
-            <ul>
-                <!-- Integrante -->
-
-                <li><img src="img/team.png"></li>
-                <li>
-                    <h3>KATE UPTON</h3>
-                </li>
-                <li>
-                    <h4>Creative Director</h4>
-                </li>
-                <li>Duis aute irure dolor in in <br>voluptate velit esse cillum<br>dolor fugiat nulla
-                    pariatur.<br>Excepteur sint occaecat non<br>diam proident.</li>
-
-                <ul class="iconos">
-                    <!-- Redes sociales -->
-                    <li><img src="img/twitter.png"></li>
-                    <li><img src="img/linkedin.png"></li>
-                    <li><img src="img/correo.png"></li>
-                </ul>
-            </ul>
-
-            <ul>
-                <!-- Integrante -->
-
-                <li><img src="img/team.png"></li>
-                <li>
-                    <h3>OLIVIA WILDE</h3>
-                </li>
-                <li>
-                    <h4>Lead Designer</h4>
-                </li>
-                <li>Nemo enim ipsam voluptas<br>sit aspernatur aut odit aut<br>fugit, sed quia consequuntur<br>magni
-                    dolores eos qui ratione<br>voluptatem nesciunt.</li>
-
-                <ul class="iconos">
-                    <!-- Redes sociales -->
-                    <li><img src="img/facebook.png"></li>
-                    <li><img src="img/twitter.png"></li>
-                    <li><img src="img/correo.png"></li>
-
-                </ul>
-            </ul>
-
-            <ul>
-                <!-- Integrante -->
-
-                <li><img src="img/team.png"></li>
-                <li>
-                    <h3>ASHLEY GREENE</h3>
-                </li>
-                <li>
-                    <h4>SEO / Developer</h4>
-                </li>
-                <li>Sed ut perspiciatis unde<br>omnis iste natus error sit<br>voluptatem accusantium,<br>doloremque
-                    laudantium<br>totam rem aperiam.</li>
-
-                <ul class="iconos">
-                    <!-- Redes sociales -->
-                    <li><img src="img/facebook.png"></li>
-                    <li><img src="img/twitter.png"></li>
-                    <li><img src="img/linkedin.png"></li>
-                    <li><img src="img/correo.png"></li>
-
-
-                </ul>
-            </ul>
-
+        
+        <div class="row">
+    <?php
+    global $mysqli;
+    $sql = "SELECT team_img, team_name, team_position, team_description FROM team LIMIT 4";
+    $rsl = $mysqli->query($sql);  
+    while ($fila = mysqli_fetch_array($rsl)) {
+    ?>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <figure>
+                <img src="<?php echo $fila["team_img"];?>" alt="image">          
+                <figcaption>
+                    <h4><?php echo $fila["team_name"];?></h4>
+                    <span><?php echo $fila["team_position"];?></span>
+                    <p><?php echo $fila["team_description"];?></p>
+                    
+                    <div class="social">
+                    <a href="#"><img src="img/facebook.png"></a>
+                    <a href="#"><img src="img/twitter.png"></a>
+                    <a href="#"><img src="img/linkedin.png"></a>
+                    <a href="#"><img src="img/correo.png"></a>
+                    </div>
+               </figcaption>
+            </figure>
+         </div>
+        <?php }?>          
         </div>
-
     </div>
-
-
-
+</section>
     <!--SKILL-->
     <?php
     global $mysqli;
@@ -463,10 +423,14 @@
             </div>
         </div>
     </footer>
-    <script src="js/fastclick.js"></script>
-    <script src="js/scroll.js"></script>
-    <script src="js/fixed-responsive-nav.js"></script>
-
+    <script>
+        $("#button-movil").click(function(){
+            $(".menu-header-movil").css("display","flex");
+        });
+        $("#close-movil").click(function(){
+            $(".menu-header-movil").css("display","none");
+        });
+    </script>
 </body>
 
 </html>

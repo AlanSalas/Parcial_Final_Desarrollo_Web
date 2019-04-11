@@ -1,5 +1,28 @@
 	/*RESOLUCION 767 PARA MOVIL*/
 	@media (min-width: 320px) and (max-width: 767px) {
+		/*HEADER*/
+    #button-movil{color: #fff;font-size: 30px;position: absolute;right: 10px;top: 10px;display:block;}
+    .menu-header-principal{display: none;}
+    .menu-header-movil{background: #fff;width: 100%;height: 50%;position: fixed;overflow-y: hidden;justify-content: center;align-items: center;
+    }
+    .menu-header-movil .nav{
+        flex-direction: column;
+        text-align: center;
+    }
+    .menu-header-movil .nav-item{display: block; float: none;}
+    .menu-header-movil .nav-link{color: #333;padding-top: 15px;}
+    #download  p {
+    font-size: 15px;
+    padding: 15px 44px;
+    width: 240px;
+    text-align: center;
+    background-color: rgb(235, 125, 76);
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+}
+    #logotipo{display:block;margin-top: 20px;}
+    #close-movil{display:block;position: absolute; font-size: 30px; color: #333; top: 10px;right: 10px;}
 		/*PORTAFOLIO*/
 		#portafolio { padding:50px 0;}
 		#portafolio p { margin: 10px 0 30px; width:100%;}
@@ -44,11 +67,21 @@
 		}
 
 		/*TEAM*/
-
-		#div2-1 h1 {
-			font-size: 20px;
-			line-height: 70px;
+		#team {
+			padding:50px 0;
 		}
+		#team h2 {
+			font-size:30px;
+			line-height:70px;
+		}
+		#team p {
+			margin: 10px 0 30px;
+			width:100%;
+		}
+		#team span {
+			margin-bottom:30px;
+		}
+
 	}
 	/*RESOLUCION PARA TABLETAS*/
 	@media only screen and (min-width: 768px) and (max-width: 959px){
