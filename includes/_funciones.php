@@ -493,14 +493,8 @@ require_once("con_db.php");
 		//Validacion de campos vacios
 		if (empty($titulo) && empty($subtitulo) && empty($skill) && empty($porcentaje) && empty($loader) && empty($color)) {
 			echo "0";
-		}else{
-			$sql = "SELECT * FROM skills WHERE loader = '$loader'";
-			$rsl = $mysqli->query($sql);
-			$row = $rsl->fetch_assoc();
-			if ($row) {
-				echo "8";
-			}else{
-				if (empty($titulo)) {
+
+				}elseif (empty($titulo)) {
 					echo "2";
 				}elseif (empty($subtitulo)) {
 					echo "3";
@@ -518,8 +512,6 @@ require_once("con_db.php");
 					}
 				}
 			}
-		}
-	}
 	//------------------------------FUNCIONES MODULO ABOUT US--------------------------------------//
 	//------------------------------FUNCION PARA CONSULTAR ABOUT US-----------------------------//
 	function consultar_about(){
