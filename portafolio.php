@@ -200,17 +200,10 @@
                     alert("Portafolio editado");
                     location.reload();
                 }
-                if (v == 1) {
+                if (v == 9) {
                     alert("Ocurrio un error, intente nuevamente");
                     location.reload();
                 }
-                if (v == 10) {
-                    $("#error").html("Ingresar una foto").fadeIn();
-                }
-                // if (v == 9) {
-                    //                    
-                //
-               
             });
         });
         //FUNCION PARA ELIMINAR 1 REGISTRO EN LA BD
